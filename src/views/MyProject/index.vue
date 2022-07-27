@@ -1,5 +1,5 @@
 <template>
-<<<<<<< Updated upstream
+
   <div class="myProject">
     <!-- <h1>项目管理页</h1> -->
     <Header></Header>
@@ -13,34 +13,39 @@
             <li></li>
           </ul>
       </div>
-    </div>  
-=======
+    </div>
+
   <div>
     <Header></Header>
->>>>>>> Stashed changes
+
     <Footer></Footer>
+  </div>
   </div>
 </template>
 
 <script>
-<<<<<<< Updated upstream
-import Header from '@/views/header.vue'
-import Footer from '@/views/footer.vue'
 
-=======
-import Header from "@/views/MyProject/header";
-import Footer from "@/views/MyProject/footer";
->>>>>>> Stashed changes
+
+
+
+import Header from "@/views/header";
+import Footer from "@/views/footer";
+
 export default {
   components: {
     Header,
     Footer
-<<<<<<< Updated upstream
+
 },
 }
 </script>
 
 <style lang="less">
+*{
+  margin: 0;
+  padding: 0;
+
+}
 .body{
   background-color: #e2f4f8;
   padding: 30px;
@@ -56,15 +61,10 @@ export default {
     height: 550px;
     background-color: #fff;
   }
-=======
-  },
-}
-</script>
 
-<style>
-*{
-  margin: 0;
-  padding: 0;
->>>>>>> Stashed changes
 }
 </style>
+
+
+
+

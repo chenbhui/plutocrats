@@ -2,7 +2,7 @@
 <template>
  <div class="wrapper">
 
-   <h1>lowCode</h1>
+   <h1 >lowCode</h1>
    <div class="btn-box">
       <div class="btn">预览</div>
       <div class="btn">保存</div>
@@ -39,6 +39,7 @@ export default {
 
     },
     methods: {
+      
     },
     watch: {
 

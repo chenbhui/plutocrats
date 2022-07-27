@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import headView  from "@/views/comps/headViews";
-import leftView  from "@/views/comps/leftViews";
-import centerView  from "@/views/comps/centerViews";
-import rightView  from "@/views/comps/rightViews";
+import headView  from "@/views/Editor/headViews";
+import leftView  from "@/views/Editor/leftViews";
+import centerView  from "@/views/Editor/centerViews";
+import rightView  from "@/views/Editor/rightViews";
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 export default {

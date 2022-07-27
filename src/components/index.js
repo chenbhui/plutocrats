@@ -9,10 +9,11 @@ function install(Vue){
          Vue.component(key,obj[key])
     })
 }
-
+/* 
 let API = {
     version:'1.0',
     install
 }
 
 export default API
+*/

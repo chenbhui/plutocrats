@@ -42,20 +42,22 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="less" scoped>
 .wrapper {
   display: flex;
   align-items: center;
   justify-content: space-around;
   border-bottom: 1px solid #eee;
+  .tabItem {
+    padding: 15px;
+    cursor: pointer;
+  }
+  .active {
+    border-bottom: 2px solid #5794f5;
+  }
 }
 
-.wrapper .tabItem {
-  padding: 15px;
-  cursor: pointer;
-}
 
-.active {
-  border-bottom: 2px solid #5794f5;
-}
+
+
 </style>

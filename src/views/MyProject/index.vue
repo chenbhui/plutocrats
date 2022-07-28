@@ -112,7 +112,9 @@
       <img src="@/assets/images/home.jpg" alt="" class="bg-f" />
     </div>
 
+
     <!-- <Footer></Footer> -->
+
 
 
   </div>
@@ -138,6 +140,7 @@ export default {
   .body {
     width: 1345px;
     margin: 0 auto;
+
     position: relative;
     background-color: #e2f4f8;
     padding: 30px;

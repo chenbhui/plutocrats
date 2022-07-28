@@ -25,7 +25,6 @@ export default {
 </script>
 
 <style lang="less" scoped>
-
 .header {
   height: 50px;
   background-color: #5176ab;
@@ -48,9 +47,7 @@ export default {
       float: left;
       margin: 0 15px;
       line-height: 50px;
-      list-style: none;
       a {
-        text-decoration: none;
         font-size: 16px;
         color: #fff;
       }
@@ -68,6 +65,7 @@ export default {
     img {
       width: 100%;
       height: 100%;
+      border-radius: 50%;
     }
   }
 }

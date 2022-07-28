@@ -13,6 +13,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
+    meta:{show:true},
     component: () => import('../views/Home')
   },
   {
@@ -23,11 +24,13 @@ const routes = [
   {
     path: '/myproject',
     name: 'myproject',
+    meta:{show:true},
     component: () => import('../views/MyProject')
   },
   {
     path: '/community',
     name: 'community',
+    meta:{show:true},
     component: () => import('../views/Community')
   },
   {

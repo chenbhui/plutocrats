@@ -162,6 +162,7 @@ export default {
       img {
         // width: 100%;
         // height: 60px;
+        vertical-align: middle;
         width: 100%;
       }
     }

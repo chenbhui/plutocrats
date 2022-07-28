@@ -13,7 +13,7 @@ const routes = [
   {
     path: '/home',
     name: 'home',
-    meta:{show:true},
+    meta: { show: true },
     component: () => import('../views/Home')
   },
   {
@@ -22,20 +22,25 @@ const routes = [
     component: () => import('../views/Login')
   },
   {
+    path: '/register',
+    name: 'register',
+    component: () => import('../views/Register')
+  },
+  {
     path: '/myproject',
     name: 'myproject',
-    meta:{show:true},
+    meta: { show: true },
     component: () => import('../views/MyProject')
   },
   {
     path: '/community',
     name: 'community',
-    meta:{show:true},
+    meta: { show: true },
     component: () => import('../views/Community')
   },
   {
-    path:'*',
-    redirect:'/home',
+    path: '*',
+    redirect: '/home',
   }
 
 ]

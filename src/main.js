@@ -3,7 +3,9 @@ import App from './App.vue'
 import router from './router'
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import store from '@/store'
+import store from '@/store';
+//引入表单校验插件
+import "@/plugins/validate"
 
 Vue.config.productionTip = false
 Vue.use(ElementUI);

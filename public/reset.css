@@ -1,32 +1,42 @@
 @import "./iconfont.css";
 
-/* 清除内外边距 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box
+}
+
+body {
+    /* 限制最小宽度，使页面缩小时出现滚动条维持布局 */
+    min-width: 1300px;
+    /* background-image: url('../images/bg.jpg');
+      background-size: cover; */
+}
+
 body,
+p,
 h1,
 h2,
 h3,
 h4,
 h5,
 h6,
-hr,
-p,
-blockquote,
-dl,
-dt,
-dd,
 ul,
 ol,
+dl,
 li,
-pre,
-fieldset,
-lengend,
-button,
-input,
-textarea,
-th,
-td {
+dt,
+dd {
+    /* 默认有边距，都要清除 */
     margin: 0;
     padding: 0;
+    /*字体设置*/
+    font-size: 14px;
+    font-family: "Microsoft Yahei", sans-serif;
+    /* 去掉列表的原点 */
+    list-style: none;
+    /* 默认鼠标 */
+    cursor: default;
 }
 
 /* 设置默认字体 */
@@ -43,6 +53,45 @@ textarea {
     background: none;
     outline: none;
     border: 0px;
+}
+
+/*行内块元素*/
+input,
+img {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    outline-style: none;
+    vertical-align: bottom;
+}
+
+button {
+    border: none;
+}
+
+input {
+    background: none;
+    outline: none;
+    border: 0px;
+}
+
+textarea {
+    /* 边框清零 */
+    border: none;
+    /* 轮廓线清零 */
+    outline: none;
+    /* 防止文本域被随意拖拽 */
+    resize: none;
+}
+
+/*行内元素*/
+a,
+a:active,
+a:visited {
+    display: block;
+    /*下划线和颜色*/
+    text-decoration: none;
+    color: #fff;
 }
 
 h1 {
@@ -101,11 +150,6 @@ ol {
     list-style: none;
 }
 
-/* 重置文本格式元素 */
-a {
-    text-decoration: none;
-    color: #666;
-}
 
 
 /* 重置表单元素 */
@@ -151,16 +195,17 @@ html {
     overflow-y: scroll;
 }
 
-a:link:hover {
-    color: rgb(79, 76, 212) !important;
-    text-decoration: underline;
+/* 使用伪元素清除浮动 */
+.clearfix::before,
+.clearfix::after {
+    content: "";
+    height: 0;
+    line-height: 0;
+    display: block;
+    visibility: none;
+    clear: both;
 }
 
-/* 清除浮动 */
-.clearfix::after {
-    display: block;
-    height: 0;
-    content: "";
-    clear: both;
-    visibility: hidden;
+.clearfix {
+    *zoom: 1;
 }

@@ -12,16 +12,14 @@
           <div class="main-contain-left-img">
             <img src="../../assets/images/home.jpg" alt="" />
           </div>
-          <p>Art by peter Tarka</p>
+          <p>Art by Irina Valeeva</p>
         </div>
       </section>
       <section class="main-contain-right">
-        <div class="tip">
-          <router-link to="/register">还未注册</router-link>
-        </div>
+        <div class="tip"><a href="#">已有帐号</a></div>
         <div class="main-contain-right-content">
           <div class="right-content-title">
-            <h3>Sign in to Iterator</h3>
+            <h3>Sign up to Iterator</h3>
             <div class="auth-connection">
               <div class="auth-connection-mean iconfont icon-weixin"></div>
             </div>
@@ -29,20 +27,14 @@
             <form>
               <label for="username">Username</label>
               <div class="username">
-                <!-- 
-                name:给每一个表单元素添加一个名字，需要让vee-valadite区分验证的是哪一个表单元素
-                v-validate=验证规则
-                -->
                 <input
                   type="text"
-                  placeholder="enter your username"
                   autocomplete="off"
                   v-model="username"
                   name="username"
                   v-validate="{ required: true }"
                   :class="{ invalid: errors.has('username') }"
                 />
-                <!-- 提示错误信息 -->
                 <div class="error">
                   <i class="iconfont icon-error">
                     {{ errors.first("username") }}
@@ -53,21 +45,35 @@
               <div class="password">
                 <input
                   type="password"
-                  placeholder="enter your password"
                   autocomplete="off"
                   v-model="password"
                   name="password"
                   v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }"
                   :class="{ invalid: errors.has('password') }"
                 />
-                <!-- 提示错误信息 -->
                 <div class="error">
                   <i class="iconfont icon-error">
                     {{ errors.first("password") }}
                   </i>
                 </div>
               </div>
-              <button @click.prevent="userLogin">Sign In</button>
+              <label for="ConfirmPwd">Confirm password</label>
+              <div class="ConfirmPwd">
+                <input
+                  type="text"
+                  autocomplete="off"
+                  v-model="confirmPwd"
+                  name="confirmPwd"
+                  v-validate="{ required: true, is: password }"
+                  :class="{ invalid: errors.has('confirmPwd') }"
+                />
+                <div class="error">
+                  <i class="iconfont icon-error">
+                    {{ errors.first("confirmPwd") }}
+                  </i>
+                </div>
+              </div>
+              <button @click="userRegister">Sign up</button>
             </form>
           </div>
         </div>
@@ -78,34 +84,30 @@
 
 <script>
 export default {
-  name: "Login",
+  name: "register",
   data() {
     return {
-      // 表单数据
+      //收集表单数据
       username: "",
       password: "",
+      confirmPwd: "",
     };
   },
   methods: {
-    //登录
-    async userLogin() {
-      //这里是vee-valadiate提供的一个方法，如果表单验证全部成功，返回布尔值真，
-      //如有有一个字段验证失败，返回布尔值false
-      const success = await this.$validator.validateAll();
-      // console.log(success)
-      //全部表单验证成功,在向服务器发请求,进行注册
-      //只要有一个表单没有成功,不会发请求
-      if (success) {
-        try {
-          //如果成功 -- 路由跳转
-          const { username, password } = this; //结构出数据,方便使用,注意this后面加分号,不然和下面的判断一起会报错
-          //下面简单判断再派发action,手机号&&验证码&&密码==验证密码的时候,才派发action
-          await this.$store.dispatch("userRegister", { username, password });
-          //注册成功需要路由跳转
+    //注册
+    async userRegister() {
+      try {
+        const { username, password, confirmPwd } = this;
+        if (username && password && password == confirmPwd) {
+          await this.$store.dispatch("reqUserRegister", {
+            username,
+            password,
+            confirmPwd,
+          });
           this.$router.push("/login");
-        } catch (error) {
-          alert(error.message);
         }
+      } catch (error) {
+        alert(error.message);
       }
     },
   },
@@ -179,13 +181,6 @@ export default {
 }
 
 /* 登录处 */
-.main-contain .main-contain-right {
-  display: flex;
-  width: calc(100% - 500px);
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
 .tip {
   position: absolute;
   top: 25px;
@@ -196,6 +191,15 @@ export default {
   color: #5176ab;
   font-size: 16px;
   cursor: pointer;
+}
+
+.main-contain .main-contain-right {
+  display: flex;
+  position: relative;
+  width: calc(100% - 500px);
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
 }
 
 .main-contain-right-content {
@@ -226,12 +230,6 @@ export default {
 .icon-weixin:before {
   font-size: 47px;
   color: #f2f2f2;
-  border-radius: 50%;
-  border: 1px solid #ccc;
-}
-
-.icon-weixin:hover:before {
-  color: #ccc;
 }
 
 .divider {
@@ -266,15 +264,29 @@ export default {
 .right-content-title form input {
   width: 100%;
   height: 100%;
+  line-height: 43px;
+  font-size: 16px;
   padding-left: 15px;
 }
 
-.right-content-title form div {
+.right-content-title form > div {
+  position: relative;
   width: 100%;
   height: 43px;
   margin: 10px 0 30px 0;
   background: #f2f2f2;
   border-radius: 8px;
+}
+
+.right-content-title form > div .error {
+  position: absolute;
+  top: 49px;
+  left: 2px;
+  color: red;
+}
+
+.right-content-title form > div .error i {
+  font-size: 13px;
 }
 
 .right-content-title form button {
@@ -286,19 +298,5 @@ export default {
   line-height: 43px;
   border-radius: 8px;
   background: #5176ab;
-}
-
-.right-content-title form div.keepLogin {
-  height: 20px;
-  background: transparent;
-}
-
-.right-content-title form div.keepLogin input {
-  width: 15px;
-  height: 15px;
-}
-
-.right-content-title form div.keepLogin label {
-  font-size: 14px;
 }
 </style>

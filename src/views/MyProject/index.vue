@@ -111,7 +111,10 @@
       </div>
       <img src="@/assets/images/home.jpg" alt="" class="bg-f" />
     </div>
+
     <!-- <Footer></Footer> -->
+
+
   </div>
 </template>
 
@@ -127,7 +130,7 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .myProject {
   width: 100%;
   background-color: rgb(226, 244, 247);

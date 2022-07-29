@@ -1,84 +1,102 @@
-
 <template>
- <div class="wrapper">
+  <div class="wrapper">
+    <h1>lowCode</h1>
+    <div style="flex: 1;cursor: pointer">
+      <i class="el-icon-arrow-left"></i>
+      <i class="el-icon-arrow-right"></i></div>
+    <div class="btn-box" style="margin-right: 40px">
+      <el-button type="primary" icon="el-icon-video-play" size="small">预览</el-button>
+      <el-button type="primary" icon="el-icon-circle-plus-outline" size="small">保存</el-button>
+      <el-button type="primary" icon="el-icon-link" size="small">发布</el-button>
 
-   <h1 >lowCode</h1>
-   <div class="btn-box">
-      <div class="btn">预览</div>
-      <div class="btn">保存</div>
-      <div class="btn">发布</div>
-   </div>
-   <button class="check" >切换</button>
-   <div>
-     <el-avatar> user </el-avatar>
-   </div>
- </div>
+    </div>
+    <div style="margin-right: 30px;cursor: pointer">
+      <i class="el-icon-search"></i>
+      <i class="el-icon-plus inDistance"></i>
+    </div>
+    <div style="width: 40px">
+      <el-avatar> user</el-avatar>
+    </div>
+  </div>
 </template>
 
 <script>
 
 export default {
-    components: {
+  components: {},
+  props: {},
+  data() {
+    return {
+      theme: 'dark'
+    };
+  },
+  computed: {},
+  created() {
 
-    },
-    props: {
+  },
+  mounted() {
 
-    },
-    data() {
-        return {
-          theme: 'dark'
-        };
-    },
-    computed: {
-
-    },
-    created() {
-
-    },
-    mounted() {
-
-    },
-    methods: {
-
-    },
-    watch: {
-
-    },
+  },
+  methods: {},
+  watch: {},
 };
 </script>
 
 <style lang="less" scoped>
-.wrapper{
-    background: skyblue;
-    height:80px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color:white;
-    padding:0 15px;
-    .btn-box{
-      display: flex;
-      margin-left: -50%;
-      width:200px;
-      justify-content: space-around;
-      .btn{
-        background: white;
-        color:#333;
-        font-size: 14px;
-        padding:2px 10px;
-        border-radius: 4px;
-        cursor:pointer;
-        :first-child{
-          color:white;
-          background: #5794f5;
-        }
-      }
-    }
-  .check{
-    margin-right: -55%;
-  }
-}
+.wrapper {
+  background: #ffffff;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3), 0px 0px 50px  #dfe1eb inset;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  padding: 0 15px;
 
+  h1 {
+    font-size: 25px;
+    position: relative;
+    flex: 2;
+    color: black
+  }
+
+  h1:after, h1:before {
+    content: '';
+    background: #fff;
+    position: absolute;
+    z-index: -1;
+    left: 10px;
+    right: 10px;
+    top: 50%;
+    bottom: 0px;
+    border-radius: 100px/10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+  }
+
+  .btn-box {
+    display: flex;
+    //margin-right: -40%;
+    width: 200px;
+    justify-content: space-around;
+
+    .el-button--primary {
+      background: #5176ab;
+    }
+  }
+
+  .el-icon-arrow-left,
+  .el-icon-arrow-right,
+  .el-icon-search,
+  .el-icon-plus {
+    font-size: 25px;
+    color: #4e5156;
+  }
+
+  .inDistance {
+    margin-left: 10px;
+  }
+
+}
 
 
 </style>

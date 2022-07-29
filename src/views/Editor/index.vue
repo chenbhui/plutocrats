@@ -1,19 +1,26 @@
 <template>
-  <div>
-    <head-view></head-view>
-    <div class="content-box">
+  <div style="display: flex">
+    <div>
       <left-view></left-view>
-      <center-view></center-view>
-      <right-view></right-view>
     </div>
+    <div style="flex: 2">
+
+      <head-view></head-view>
+      <div class="content-box">
+
+        <center-view></center-view>
+        <right-view></right-view>
+      </div>
+    </div>
+
   </div>
 </template>
 
 <script>
-import headView  from "@/views/Editor/headViews";
-import leftView  from "@/views/Editor/leftViews";
-import centerView  from "@/views/Editor/centerViews";
-import rightView  from "@/views/Editor/rightViews";
+import headView from "@/views/Editor/headViews";
+import leftView from "@/views/Editor/leftViews";
+import centerView from "@/views/Editor/centerViews";
+import rightView from "@/views/Editor/rightViews";
 //这里可以导入其他文件（比如：组件，工具js，第三方插件js，json文件，图片文件等等）
 //例如：import 《组件名称》 from '《组件路径》';
 export default {
@@ -104,9 +111,9 @@ export default {
 </script>
 
 <style scoped>
-.content-box{
+.content-box {
   display: flex;
-  height:calc(100vh - 80px);
+  height: calc(100vh - 80px);
 }
 
 

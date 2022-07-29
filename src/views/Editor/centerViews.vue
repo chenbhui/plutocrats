@@ -30,7 +30,6 @@ export default {
 <style scoped>
 .wrapper {
   flex: 1;
-  background: #eee;
-  position: relative;
+  background: #e7e8f1;
 }
 </style>

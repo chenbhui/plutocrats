@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import headTab from "@/views/Editor/headTab";
+import headTab from "@/views/Editor/comp/headTab";
 export default {
   components: {
     headTab
@@ -25,7 +25,7 @@ export default {
   created() {
   },
   mounted() {
-    
+
   },
   methods: {
 

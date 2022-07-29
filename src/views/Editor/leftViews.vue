@@ -1,47 +1,42 @@
 
 <template>
  <div class="wrapper">
-     物料
+   <sideBar></sideBar>
  </div>
 </template>
 
 <script>
+import sideBar from "@/views/Editor/comp/sideBar";
 
 export default {
-    components: {
-
+  components:{
+    sideBar
+  },
+  data() {
+    return {
+      isCollapse: true
+    };
+  },
+  methods: {
+    handleOpen(key, keyPath) {
+      console.log(key, keyPath);
     },
-    props: {
-
-    },
-    data() {
-
-    },
-    computed: {
-
-    },
-    created() {
-
-    },
-    mounted() {
-
-    },
-    methods: {
-      dragStart(e) {
-
-
-      }
-    },
-    watch: {
-
-    },
-
+    handleClose(key, keyPath) {
+      console.log(key, keyPath);
+    }
+  },
 }
 </script>
 
-<style scoped>
-.wrapper{
-    width: 243px;
-    padding:8px;
+<style lang="less" scoped>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  width: auto;
+  //height: 100vh;
+  //background-color: #5176ab;
 }
+
+
 </style>

@@ -275,12 +275,10 @@ export default {}
 <style lang="less" scoped>
 .myProject {
   width: 100%;
-  height: 100vh;
   background-color: #e2f4f8;
   .body {
     position: relative;
     width: 1345px;
-    height: 755px;
     margin: 0 auto;
     padding: 30px;
     display: flex;
@@ -312,6 +310,13 @@ export default {}
       height: 0;
       width: 0;
       color: transparent;
+    }
+    .left-foot,
+    .right {
+      overflow-y: scroll;
+      scrollbar-color: transparent transparent;
+      scrollbar-track-color: transparent;
+      -ms-scrollbar-track-color: transparent;
     }
 
     // 左部区域

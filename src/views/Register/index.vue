@@ -4,9 +4,9 @@
       <section class="main-contain-left">
         <div class="left-content-title">
           <div class="title-area">
-            <a href="index.html">
+            <router-link to="/index">
               <img src="../../assets/images/loginLogo.jpg" alt="" />
-            </a>
+            </router-link>
           </div>
           <h3>Discover the world's top <br />Love & Expectation</h3>
           <div class="main-contain-left-img">
@@ -16,7 +16,7 @@
         </div>
       </section>
       <section class="main-contain-right">
-        <div class="tip"><a href="#">已有帐号</a></div>
+        <div class="tip"><router-link to="/login">已有帐号</router-link></div>
         <div class="main-contain-right-content">
           <div class="right-content-title">
             <h3>Sign up to Iterator</h3>
@@ -35,7 +35,7 @@
                   v-validate="{ required: true }"
                   :class="{ invalid: errors.has('username') }"
                 />
-                <div class="error">
+                <div class="error" v-show="errors.first('username')">
                   <i class="iconfont icon-error">
                     {{ errors.first("username") }}
                   </i>
@@ -51,7 +51,7 @@
                   v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }"
                   :class="{ invalid: errors.has('password') }"
                 />
-                <div class="error">
+                <div class="error" v-show="errors.first('password')">
                   <i class="iconfont icon-error">
                     {{ errors.first("password") }}
                   </i>
@@ -67,7 +67,7 @@
                   v-validate="{ required: true, is: password }"
                   :class="{ invalid: errors.has('confirmPwd') }"
                 />
-                <div class="error">
+                <div class="error" v-show="errors.first('confirmPwd')">
                   <i class="iconfont icon-error">
                     {{ errors.first("confirmPwd") }}
                   </i>
@@ -180,7 +180,15 @@ export default {
   font-size: 14px;
 }
 
-/* 登录处 */
+/* 注册处 */
+.main-contain .main-contain-right {
+  display: flex;
+  position: relative;
+  width: calc(100% - 500px);
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
 .tip {
   position: absolute;
   top: 25px;
@@ -191,15 +199,6 @@ export default {
   color: #5176ab;
   font-size: 16px;
   cursor: pointer;
-}
-
-.main-contain .main-contain-right {
-  display: flex;
-  position: relative;
-  width: calc(100% - 500px);
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
 }
 
 .main-contain-right-content {

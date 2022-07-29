@@ -4,9 +4,9 @@
       <section class="main-contain-left">
         <div class="left-content-title">
           <div class="title-area">
-            <a href="index.html">
+            <router-link to="/index">
               <img src="../../assets/images/loginLogo.jpg" alt="" />
-            </a>
+            </router-link>
           </div>
           <h3>Discover the world's top <br />Love & Expectation</h3>
           <div class="main-contain-left-img">
@@ -43,7 +43,7 @@
                   :class="{ invalid: errors.has('username') }"
                 />
                 <!-- 提示错误信息 -->
-                <div class="error">
+                <div class="error" v-if="errors.first('username')">
                   <i class="iconfont icon-error">
                     {{ errors.first("username") }}
                   </i>
@@ -61,7 +61,7 @@
                   :class="{ invalid: errors.has('password') }"
                 />
                 <!-- 提示错误信息 -->
-                <div class="error">
+                <div class="error" v-if="errors.first('password')">
                   <i class="iconfont icon-error">
                     {{ errors.first("password") }}
                   </i>
@@ -266,17 +266,29 @@ export default {
 .right-content-title form input {
   width: 100%;
   height: 100%;
+  line-height: 43px;
+  font-size: 16px;
   padding-left: 15px;
 }
 
-.right-content-title form div {
+.right-content-title form > div {
+  position: relative;
   width: 100%;
   height: 43px;
   margin: 10px 0 30px 0;
   background: #f2f2f2;
   border-radius: 8px;
 }
+.right-content-title form > div .error {
+  position: absolute;
+  top: 49px;
+  left: 2px;
+  color: red;
+}
 
+.right-content-title form > div .error i {
+  font-size: 13px;
+}
 .right-content-title form button {
   width: 200px;
   height: 43px;

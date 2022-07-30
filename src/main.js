@@ -6,7 +6,8 @@ import 'element-ui/lib/theme-chalk/index.css';
 import store from '@/store';
 //引入表单校验插件
 import "@/plugins/validate"
-
+import "./assets/iconfont/iconfont.css"
+import "../public/reset.css"
 Vue.config.productionTip = false
 Vue.use(ElementUI);
 new Vue({

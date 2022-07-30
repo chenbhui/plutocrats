@@ -1,9 +1,10 @@
 <template>
   <div class="wrapper">
     <h1>lowCode</h1>
-    <div style="flex: 1;cursor: pointer">
-      <i class="el-icon-arrow-left"></i>
-      <i class="el-icon-arrow-right"></i></div>
+    <div class="icon">
+      <span class="iconfont icon-chexiao"></span>
+      <i class="iconfont icon-chexiaoyou"></i>
+    </div>
     <div class="btn-box" style="margin-right: 40px">
       <el-button type="primary" icon="el-icon-video-play" size="small">预览</el-button>
       <el-button type="primary" icon="el-icon-circle-plus-outline" size="small">保存</el-button>
@@ -13,6 +14,8 @@
     <div style="margin-right: 30px;cursor: pointer">
       <i class="el-icon-search"></i>
       <i class="el-icon-plus inDistance"></i>
+      <i class="el-icon-s-opportunity inDistance"></i>
+      <i class="el-icon-s-claim inDistance"></i>
     </div>
     <div style="width: 40px">
       <el-avatar> user</el-avatar>
@@ -45,7 +48,7 @@ export default {
 <style lang="less" scoped>
 .wrapper {
   background: #ffffff;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3), 0px 0px 50px  #dfe1eb inset;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.3), 0px 0px 5px #e6e5ed inset;
   height: 80px;
   display: flex;
   justify-content: space-between;
@@ -87,13 +90,32 @@ export default {
   .el-icon-arrow-left,
   .el-icon-arrow-right,
   .el-icon-search,
-  .el-icon-plus {
+  .el-icon-plus,
+  .el-icon-s-opportunity,
+  .el-icon-s-claim{
     font-size: 25px;
     color: #4e5156;
   }
 
   .inDistance {
     margin-left: 10px;
+  }
+
+  .icon {
+    flex: 1;
+    cursor: pointer;
+
+    .icon-chexiao,
+    .icon-chexiaoyou {
+      color: #c9c9c9;
+      font-size: 25px;
+
+    }
+
+    .icon-chexiaoyou {
+      margin-left: 20px;
+    }
+
   }
 
 }

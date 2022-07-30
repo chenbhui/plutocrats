@@ -9,7 +9,7 @@
         <option value="other3">other3</option>
       </select>
       <div class="filters">
-        <a href="#"><img src="@/assets/images/warn.png" />Filters</a>
+        <a href="#"><span class="iconfont icon-tixingshixin"></span>Filters</a>
       </div>
     </div>
     <!-- 四个表单框 -->
@@ -17,7 +17,7 @@
       <ul>
         <li>
           Tags
-          <div class="inputs"><img src="@/assets/images/search.png" /> <input type="text" /></div>
+          <div class="inputs"><a href="#" class="iconfont icon-sousuo"></a> <input type="text" /></div>
         </li>
         <li>
           Color
@@ -49,38 +49,83 @@
       <ul>
         <li>
           <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
-          <div class="text">
+          <div class="information">
             <div class="left">
-              <a href="#"><img src="" alt="" /></a><span class="name">Nantha Kumar</span>
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
             </div>
-            <div class="right"><span class="like"></span><span class="watch"></span></div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
           </div>
         </li>
         <li>
           <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
-          <div class="text">
+          <div class="information">
             <div class="left">
-              <a href="#"><img src="" alt="" /></a><span class="name">Nantha Kumar</span>
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
             </div>
-            <div class="right"><span class="like"></span><span class="watch"></span></div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
           </div>
         </li>
         <li>
           <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
-          <div class="text">
+          <div class="information">
             <div class="left">
-              <a href="#"><img src="" alt="" /></a><span class="name">Nantha Kumar</span>
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
             </div>
-            <div class="right"><span class="like"></span><span class="watch"></span></div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
           </div>
         </li>
         <li>
           <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
-          <div class="text">
+          <div class="information">
             <div class="left">
-              <a href="#"><img src="" alt="" /></a><span class="name">Nantha Kumar</span>
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
             </div>
-            <div class="right"><span class="like"></span><span class="watch"></span></div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
+          <div class="information">
+            <div class="left">
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
+            </div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
+          <div class="information">
+            <div class="left">
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
+            </div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
+          <div class="information">
+            <div class="left">
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
+            </div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
+          <div class="information">
+            <div class="left">
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
+            </div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
+          </div>
+        </li>
+        <li>
+          <a href="#" class="formImg"><img src="@/assets/images/formWork.png" alt="" /></a>
+          <div class="information">
+            <div class="left">
+              <a href="#"><img src="@/assets/images/author3.jpg" alt="" />Nantha Kumar</a>
+            </div>
+            <div class="right"><span class="iconfont icon-xiai"></span>3<span class="iconfont icon-yanjing"></span>1.1k</div>
           </div>
         </li>
       </ul>
@@ -132,16 +177,17 @@ export default {
       padding: 8px;
       background-color: #f3f3f4;
       border-radius: 5px;
-
-      img {
-        width: 30px;
-        height: 30px;
-        vertical-align: middle;
-        margin: -2px 2px 0 2px;
-      }
       a {
         color: #000;
         font-size: 18px;
+        .icon-tixingshixin {
+          display: inline-block;
+          font-size: 25px;
+          color: #5176ab;
+          width: 30px;
+          vertical-align: top;
+          margin: -3px 0 0 5px;
+        }
       }
     }
   }
@@ -168,10 +214,11 @@ export default {
           background-color: #f3f3f4;
           border-radius: 5px;
           margin-top: 10px;
-          img {
-            width: 20px;
-            height: 20px;
-            margin: 7px 12px;
+          .icon-sousuo {
+            display: block;
+            font-size: 20px;
+            color: #ababb3;
+            padding: 5px 12px;
           }
           input[type='text'] {
             float: right;
@@ -210,10 +257,19 @@ export default {
       }
     }
   }
+
+  // 滚动条透明
+  .formWork::-webkit-scrollbar {
+    height: 0;
+    width: 0;
+    color: transparent;
+  }
+
   // 模板列表
   .formWork {
-    height: 376px;
-    background-color: green;
+    height: 570px;
+    overflow: auto;
+    // background-color: green;
     ul {
       width: 100%;
       height: 100%;
@@ -224,18 +280,58 @@ export default {
         float: left;
         height: 250px;
         width: 300px;
-        background-color: skyblue;
-        margin: 0 48px 0 0;
-        .formImg{
+        // background-color: skyblue;
+        margin: 0 48px 35px 0;
+        overflow: hidden;
+        // 模板照片
+        .formImg {
           display: block;
           width: 100%;
           height: 210px;
           border-radius: 10px;
           overflow: hidden;
           background-color: pink;
-          img{
+          img {
             width: 100%;
             height: 100%;
+          }
+        }
+        // 个人信息&点赞&浏览
+        .information {
+          .left {
+            float: left;
+            width: 180px;
+            height: 100%;
+            a {
+              font-size: 15px;
+              color: #000;
+              img {
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+                border-radius: 50%;
+                margin: 5px 5px 6px 5px;
+                vertical-align: middle;
+              }
+            }
+          }
+          .right {
+            float: right;
+            width: 110px;
+            height: 100%;
+            padding: 10px 0;
+            color: #000;
+            font-size: 15px;
+            .icon-xiai {
+              margin: 0 5px 0 22px;
+              color: #9e9ea7;
+              font-size: 16px;
+            }
+            .icon-yanjing {
+              margin: 0 5px;
+              color: #9e9ea7;
+              font-size: 16px;
+            }
           }
         }
       }

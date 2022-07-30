@@ -72,9 +72,7 @@
       <div class="right">
         <!-- 添加项目 -->
         <div class="addProject">
-          <div class="addbutton">
-            <a href="#"><img src="@/assets/images/create.png" alt="" /></a>
-          </div>
+          <a href="#" class="iconfont icon-zengjia"></a>
         </div>
         <!-- 项目列表 -->
         <ul class="projectList">
@@ -82,13 +80,13 @@
             <p>1</p>
             <ul class="operate">
               <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
+                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
+                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
+                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
               </li>
             </ul>
           </li>
@@ -96,27 +94,13 @@
             <p>2</p>
             <ul class="operate">
               <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
+                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
+                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
+                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
               </li>
             </ul>
           </li>
@@ -124,27 +108,13 @@
             <p>3</p>
             <ul class="operate">
               <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
+                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
+                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
+                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
               </li>
             </ul>
           </li>
@@ -152,111 +122,13 @@
             <p>3</p>
             <ul class="operate">
               <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
+                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
+                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
               </li>
               <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><img src="@/assets/images/edit.png" alt="" />编辑</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/preserve.png" alt="" />另存</a>
-              </li>
-              <li>
-                <a href="#"><img src="@/assets/images/delete.png" alt="" />删除</a>
+                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
               </li>
             </ul>
           </li>
@@ -291,7 +163,7 @@ export default {}
       top: 0;
       width: 350px;
       height: 300px;
-      clip: rect(0px 358px 72px 175px);
+      clip: rect(0px 334px 72px 175px);
     }
 
     // 下边的小云
@@ -450,15 +322,11 @@ export default {}
         border-radius: 8px;
         border: 1px solid #ccc;
         background-color: #fff;
-        .addbutton {
-          margin: 29px auto;
-          width: 80px;
-          height: 80px;
-          border-radius: 50%;
-          img {
-            width: 100%;
-            height: 100%;
-          }
+        a {
+          display: block;
+          color: #3e99e0;
+          font-size: 80px;
+          margin: 24px 90px;
         }
       }
 
@@ -493,11 +361,13 @@ export default {}
               a {
                 font-size: 13px;
                 color: #fff;
-              }
-              img {
-                margin: 3px 3px 0 3px;
-                width: 75%;
-                height: 60%;
+                .icon-bianji,
+                .icon-baocun,
+                .icon-shanchu {
+                  display: block;
+                  margin: 2px 3px 0 3px;
+                  font-size: 26px;
+                }
               }
             }
             li:nth-child(1) {

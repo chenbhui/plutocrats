@@ -1,152 +1,246 @@
 <template>
-  <div style="display: flex" >
-    <div class="wrapper">
-
-      <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-               :collapse="false"
-               background-color="#5176ab"
-               text-color="#fff"
-               active-text-color="#ffd04b">
-        <el-menu-item index="1">
-          <i class="el-icon-menu"></i>
-          <span slot="title">模板</span>
-        </el-menu-item>
-        <el-menu-item index="2">
-          <i class="el-icon-picture"></i>
-          <span slot="title">图片</span>
-        </el-menu-item>
-
-        <el-menu-item index="3">
-          <i class="el-icon-star-on"></i>
-          <span slot="title">素材</span>
-        </el-menu-item>
-      </el-menu>
-      <div class="content">
-        <div></div>
+  <div class="wrapper">
+    <!-- 侧边栏-->
+    <!--    一级菜单-->
+    <div class="firstmenu">
+      <ul>
+        <li :class="num===1?'current':''" @click="num=1">
+          <a href="#">
+            <span class="iconfont icon-xiazaimoban"></span>
+            <div>模板</div>
+          </a>
+        </li>
+        <li :class="num===2?'current':''" @click="num=2">
+          <a href="#">
+            <span class="iconfont icon-charutupian"></span>
+            <div>图片</div>
+          </a>
+        </li>
+        <li :class="num===3?'current':''" @click="num=3">
+          <a href="#">
+            <span class="iconfont icon-sucaiku"></span>
+            <div>素材</div>
+          </a>
+        </li>
+        <li :class="num===4?'current':''" @click="num=4">
+          <a href="#">
+            <span class="iconfont icon-tianjiawenzi"></span>
+            <div>文字</div>
+          </a>
+        </li>
+        <li :class="num===5?'current':''" @click="num=5">
+          <a href="#">
+            <span class="iconfont icon-background"></span>
+            <div>背景</div>
+          </a>
+        </li>
+        <li :class="num===6?'current':''" @click="num=6">
+          <a href="#">
+            <span class="iconfont icon-gongju"></span>
+            <div>工具</div>
+          </a>
+        </li>
+        <li :class="num===7?'current':''" @click="num=7">
+          <a href="#">
+            <span class="iconfont icon-yunshangchuan"></span>
+            <div>上传</div>
+          </a>
+        </li>
+        <li style="margin-top: 120px" :class="num===8?'current':''" @click="num=8">
+          <a href="#">
+            <span class="iconfont icon-bangzhu-yin"></span>
+            <div>帮助</div>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <!--    二级菜单-->
+    <div class="secondmenu">
+      <div class="content" v-show="num===1">
+        <div>模板</div>
         <div></div>
       </div>
-
+      <div class="content" v-show="num===2">
+        <div>图片</div>
+        <div></div>
+      </div>
+      <div class="content" v-show="num===3">
+        <div>素材</div>
+        <div></div>
+      </div>
+      <div class="content" v-show="num===4">
+        <div>文字</div>
+        <div></div>
+      </div>
+      <div class="content" v-show="num===5">
+        <div>背景</div>
+        <div></div>
+      </div>
+      <div class="content" v-show="num===6">
+        <div>工具</div>
+        <div></div>
+      </div>
+      <div class="content" v-show="num===7">
+        <div>上传</div>
+        <div></div>
+      </div>
+      <div class="content" v-show="num===8">
+        <div>帮助</div>
+        <div></div>
+      </div>
     </div>
-    <div class="direction">
-      <i class="el-icon-caret-left"></i>
+
+    <!--    左箭头-->
+    <div @click="change" class="logodirection">
+      <!--      <i class="el-icon-caret-left"></i>-->
     </div>
   </div>
 
 </template>
 
 <script>
-
+// let firstmenu = document.querySelector('.firstmenu');
+// let lis = firstmenu.querySelectorAll('li');
+// //  for 循环
+// for (let i = 0; i < lis.length; i++) {
+//   lis[i].onclick = function(){
+//     for (let i = 0; i < lis.length; i++) {
+//       lis[i].className = ''
+//     }
+//     this.className = 'current'
+//   }
+// }
 export default {
   data() {
     return {
-      isCollapse: true
-    };
-  },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    change() {
-      this.isCollapse = !this.isCollapse;
-
+      num:1
     }
   },
+  methods: {
+    change() {
+      let scon = document.querySelector('.secondmenu')
+      let logodir = document.querySelector('.logodirection')
+      scon.classList.toggle('lost')
+      logodir.classList.toggle('active')
+    },
+
+  }
 }
-
-
-// "http-get请求": {
-//   "prefix": "httpget",
-//     "body": [
-//     "this.\({",
-//     "url: this.\\$http.adornUrl(''),",
-//     "method: 'get',",
-//     "params: this.\\$http.adornParams({})",
-//     "}).then(({ data }) => {",
-//     "})"
-//   ],
-//     "description": "httpGET请求"
-// },
-// "http-post请求": {
-//   "prefix": "httppost",
-//     "body": [
-//     "this.\({",
-//     "url: this.\\$http.adornUrl(''),",
-//     "method: 'post',",
-//     "data: this.\\$http.adornData(data, false)",
-//     "}).then(({ data }) => { });"
-//   ],
-//     "description": "httpPOST请求"
-// }
-// }
-
 </script>
 
 <style lang="less" scoped>
+
 .wrapper {
   display: flex;
-  .el-icon-s-unfold {
-    font-size: 20px;
-    cursor: pointer;
+  width: auto;
+  position: relative;
 
-  }
-
-  //.toggle-button {
-  //  background-color: #5176ab;
-  //  font-size: 10px;
-  //  line-height: 24px;
-  //  color: #fff;
-  //  text-align: center;
-  //  letter-spacing: 0.2em;
-  //  cursor: pointer;
-  //
-  //}
-
-  .el-aside {
-    transition: width 0.25s;
-    -webkit-transition: width 0.25s;
-    -moz-transition: width 0.25s;
-    -webkit-transition: width 0.25s;
-    -o-transition: width 0.25s;
-  }
-
-  /*加快侧边栏文字消失的速度*/
-
-  .el-menu {
+  .firstmenu {
+    position: relative;
+    width: 70px;
     height: 100vh;
-    border-right: none;
-    //transition: all 10ms;
+    background-color: #5676ab;
+
+    ul {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      .current{
+        background-color: slategray;
+      }
+      li {
+        position: relative;
+        list-style: none;
+        width: 100%;
+        height: 70px;
+
+        a {
+          position: relative;
+          height: 100px;
+          width: 100%;
+          display: block;
+          text-decoration: none;
+          color: #17191c;
+          font-weight: 500;
+
+          div {
+            text-align: center;
+            height: 100px
+          }
+
+          .iconfont {
+            font-size: 22px;
+            color: #0a0e14;
+            position: relative;
+            display: block;
+            min-width: 50px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+          }
+        }
+      }
+    }
   }
-  .content {
+
+  .secondmenu {
+    width: 380px;
     height: 100vh;
     background-color: #fff;
-    width: 400px;
-    :first-child{
-      height: 20%;
-      border-bottom: 1px #0a0e14;
-      //background-color: pink;
-      border-bottom:1px solid #e9e9e9
-    }
-    :last-child{
-      height: 80%;
-      //background-color: skyblue;
+
+    .content {
+      margin: 0px auto;
+      width: 300px;
+      height: 100vh;
+
+      :first-child {
+        height: 20%;
+        //border-bottom: 1px #0a0e14;
+        //background-color: pink;
+        border-bottom: 1px solid #e9e9e9;
+      }
+
+      :last-child {
+        height: 80%;
+        //background-color: skyblue;
+      }
     }
   }
-}
-.direction{
-  position: absolute;
-  top: 40%;
-  left: 496px;
-  width: 20px;
-  height: 60px;
-  border-radius: 20%;
-  background-color: #ffff;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  .lost {
+    display: none;
+  }
+
+  .logodirection,
+  .active {
+    position: absolute;
+    top: calc(39% - 20px);
+    left: 450px;
+    width: 20px;
+    height: 60px;
+    border-radius: 20%;
+    background-color: #f9f9fb;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .active {
+    left: 71px;
+  }
+
+  .logodirection::before {
+    content: "\e872";
+    font-family: "iconfont", serif
+  }
+
+  .active::before {
+    content: "\e871";
+    font-family: "iconfont", serif
+  }
 }
 
 

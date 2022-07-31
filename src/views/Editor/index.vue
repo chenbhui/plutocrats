@@ -1,13 +1,11 @@
 <template>
-  <div style="display: flex">
+  <div>
+    <head-view></head-view>
+
+
     <div>
-      <left-view></left-view>
-    </div>
-    <div style="flex: 2">
-
-      <head-view></head-view>
       <div class="content-box">
-
+        <left-view></left-view>
         <center-view></center-view>
         <right-view></right-view>
       </div>
@@ -114,6 +112,7 @@ export default {
 .content-box {
   display: flex;
   height: calc(100vh - 80px);
+  overflow: hidden;
 }
 
 

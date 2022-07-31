@@ -2,6 +2,7 @@
 <template>
  <div class="wrapper">
    <sideBar></sideBar>
+
  </div>
 </template>
 
@@ -14,15 +15,14 @@ export default {
   },
   data() {
     return {
-      isCollapse: true
+
     };
   },
   methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
+    change() {
+      document.querySelector('.logodirection').onclick = function () {
+        this.classList.replace('logodirection','active')
+      }
     }
   },
 }
@@ -34,8 +34,11 @@ export default {
   margin: 0;
   box-sizing: border-box;
   width: auto;
-  //height: 100vh;
+  height: 100vh;
+  position: relative;
   //background-color: #5176ab;
+
+
 }
 
 

@@ -76,50 +76,8 @@
         </div>
         <!-- 项目列表 -->
         <ul class="projectList">
-          <li class="work">
-            <p>1</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
-              </li>
-              <li>
-                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
-              </li>
-              <li>
-                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>2</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
-              </li>
-              <li>
-                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
-              </li>
-              <li>
-                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
-            <ul class="operate">
-              <li>
-                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
-              </li>
-              <li>
-                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
-              </li>
-              <li>
-                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
-              </li>
-            </ul>
-          </li>
-          <li class="work">
-            <p>3</p>
+          <li class="work" v-for="item in projectList" :key="item.id">
+            <p>{{item.projectName}}</p>
             <ul class="operate">
               <li>
                 <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
@@ -141,7 +99,12 @@
 </template>
 
 <script>
-export default {}
+import { mapState} from 'vuex'
+export default {
+  computed: {
+    ...mapState('MyProject', ['projectList']),
+  },
+}
 </script>
 
 <style lang="less" scoped>

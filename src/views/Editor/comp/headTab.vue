@@ -18,7 +18,7 @@ export default {
   },
   data() {
     return {
-      tabList: ['样式', '数据'],
+      tabList: ['样式', '数据','更多功能'],
       checkIndex: this.checkIndex,
 
     };

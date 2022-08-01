@@ -11,7 +11,7 @@ import sideBar from "@/views/Editor/comp/sideBar";
 
 export default {
   components:{
-    sideBar
+    sideBar,
   },
   data() {
     return {
@@ -19,11 +19,7 @@ export default {
     };
   },
   methods: {
-    change() {
-      document.querySelector('.logodirection').onclick = function () {
-        this.classList.replace('logodirection','active')
-      }
-    }
+
   },
 }
 </script>

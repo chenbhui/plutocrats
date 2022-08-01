@@ -8,8 +8,10 @@ import store from '@/store';
 import "@/plugins/validate"
 import "./assets/iconfont/iconfont.css"
 import "../public/reset.css"
+import myComp from '../src/components/comp/index'
 Vue.config.productionTip = false
 Vue.use(ElementUI);
+Vue.use(myComp);
 new Vue({
   router,
   store,

@@ -1,4 +1,4 @@
-const state = {
+ const state = {
   projectList: [
     {
       id: 1,

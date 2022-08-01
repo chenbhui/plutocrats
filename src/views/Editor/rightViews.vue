@@ -25,9 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="direction" @click="change">
-      <!--      <i class="el-icon-caret-right"></i>-->
-    </div>
+
   </div>
 
 </template>
@@ -56,12 +54,7 @@ export default {
     checkTabChange(index) {
       this.checkIndex = index;
     },
-    change() {
-      let rw = document.querySelector('.rightwrapper');
-      let dir = document.querySelector('.direction')
-      rw.classList.toggle('lost')
-      dir.classList.toggle('active')
-    }
+
   },
   watch: {},
 };
@@ -70,7 +63,7 @@ export default {
 <style lang="less" scoped>
 
 .rightwrapper {
-  width: 350px;
+  width: 280px;
 
   .morefunction {
     width: 270px;
@@ -128,37 +121,7 @@ export default {
   }
 }
 
-.direction,
-.active {
-  position: absolute;
-  top: calc(44% - 20px);
-  right: 349px;
-  width: 20px;
-  height: 60px;
-  border-radius: 20%;
-  background-color: #f9f9fb;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 2;
-}
 
-.active {
-  right: 0;
-}
 
-.lost {
-  display: none;
-}
 
-.direction::before {
-  content: "\e871";
-  font-family: "iconfont", serif
-}
-
-.active::before {
-  content: "\e872";
-  font-family: "iconfont", serif
-}
 </style>

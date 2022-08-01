@@ -8,15 +8,15 @@ let getAttrStr=(attrs)=>{
     return attrStr
 }
 
-export const genId = () => { //获取随机ID，
-    function s4() {
-        return Math.floor((1 + Math.random()) * 0x10000)
-            .toString(16)
-            .substring(1);
-    }
-    return s4() + s4() + '-' + s4();
-    // 0x10000：以0x开始的数据表示16进制，10000转成十进制数就是65536，实际上这是为了后面获取四位数随机号码所以乘以10000，而为了获取包含字母在内的字符就用16进制。
-}
+// export const genId = () => { //获取随机ID，
+//     function s4() {
+//         return Math.floor((1 + Math.random()) * 0x10000)
+//             .toString(16)
+//             .substring(1);
+//     }
+//     return s4() + s4() + '-' + s4();
+//     // 0x10000：以0x开始的数据表示16进制，10000转成十进制数就是65536，实际上这是为了后面获取四位数随机号码所以乘以10000，而为了获取包含字母在内的字符就用16进制。
+// }
 
 export const mountedComponent = (component)=>{
     let data = {}

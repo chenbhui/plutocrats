@@ -1,7 +1,7 @@
 
 <template>
-  <div class="wrapper">
-    编辑器
+  <div class="wrapper" @dragover="dragover" @drop="drop">
+
   </div>
 </template>
 
@@ -21,6 +21,14 @@ export default {
   created() {},
   mounted() {},
   methods: {
+    dragover(e){
+      e.preventDefault();
+    },
+    drop(e){
+      e.preventDefault();
+      let info = JSON.parse(e.dataTransfer.getData("info"));
+      debugger;
+    }
   },
   watch: {
   },

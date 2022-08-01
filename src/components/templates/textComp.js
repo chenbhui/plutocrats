@@ -31,7 +31,7 @@ let handle = (attr,dataStr)=>{
         attribute = attr
     }
 
-    let data = {txt:'^_^'}
+    let data = {txt:'点击编辑文字'}
     if(dataStr){
 
         data = JSON.parse(dataStr)

@@ -9,8 +9,8 @@
         @dragstart="dragStart"
         v-for="(item,index) in menuList"
         :key='index'>
-      {{item.name}}
-<!--        <span class="iconfont" :class="'icon-' + item.icon"></span>-->
+
+        <span class="iconfont" :class="'icon-' + item.icon"></span>
     </div>
 
   </div>

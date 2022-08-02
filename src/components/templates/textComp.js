@@ -33,7 +33,6 @@ let handle = (attr,dataStr)=>{
 
     let data = {txt:'点击编辑文字'}
     if(dataStr){
-
         data = JSON.parse(dataStr)
     }
     let template = `<textComp ${getAttrStr(attribute)}  data='${JSON.stringify(data)}'></textComp>`

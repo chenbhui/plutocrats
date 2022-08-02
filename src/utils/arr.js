@@ -57,10 +57,8 @@ export const mountedComponent = (component)=>{
                 this.$el.style.height=`${compHeight}px`
 
             }
-
         })
-
-    },500)
+    },200)
 
 
 }

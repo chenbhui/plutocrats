@@ -101,7 +101,7 @@ export default {
         }
         node = node.parentNode;
       }
-      console.log(node,node.id);
+      // console.log(node,node.id);
       if (node&&node.id) {
         this.currComp = this.components.find(item => {
           console.log('ok');

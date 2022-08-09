@@ -2,8 +2,14 @@
 import Vue from "vue";
 import VeeValidate from "vee-validate";
 //引入进来的是vee-valadiate提供信息提示【中文的】
-import zh_CN from 'vee-validate/dist/locale/zh_CN'
-Vue.use(VeeValidate)
+import zh_CN from 'vee-validate/dist/locale/zh_CN';
+const config = {
+    locale: 'zh_CN',
+    errorBagName: 'errorBags',//change if property conflicts
+    fieldsBagName:'fieldBags'
+
+};
+Vue.use(VeeValidate,config)
 
 //表单的验证
 VeeValidate.Validator.localize('zh_CN', {

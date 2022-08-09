@@ -6,9 +6,9 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path: '/editor',
-    name: 'editor',
-    component: () => import('../views/Editor')
+    path: '/editPage',
+    name: 'editPage',
+    component: () => import('../views/EditPage')
   },
   {
     path: '/home',

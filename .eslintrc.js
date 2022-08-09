@@ -18,7 +18,7 @@ module.exports = {
         //这里是添加的代码
         //关闭某文件命名规则校验
         {
-            files: ['src/views/index.vue', 'src/views/**/index.vue', 'src/components/**/index.vue'],   // 匹配views和二级目录中的index.vue
+            files: ['src/views/index.vue', 'src/views/**/index.vue', 'src/components/**/**.vue', 'src/custom-component/**/**.vue'],   // 匹配views和二级目录中的**.vue
             rules: {
                 'vue/multi-word-component-names': "off",
             } //给上面匹配的文件指定规则

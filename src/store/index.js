@@ -7,14 +7,14 @@ import Home from './Home'
 import User from './User';
 import MyProject from './MyProject';
 import Community from './Community';
-import Editor from './Editor';
+import EditPage from './EditPage';
 
 export default new Vuex.Store({
     modules: {
         Home,
         MyProject,
         Community,
-        Editor,
-        User
+        User,
+        EditPage,
     }
 })

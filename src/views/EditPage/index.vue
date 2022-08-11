@@ -109,6 +109,13 @@ export default {
                 // console.log(component);//成功复制
                 component.style.top = e.clientY - rectInfo.y;
                 component.style.left = e.clientX - rectInfo.x;
+                // 逻辑增加
+                if (component.style.left + component.style.width > this.canvasStyleData.width * this.canvasStyleData.scale * 0.01) {
+                    this.canvasStyleData.width = (component.style.left + component.style.width)/(this.canvasStyleData.scale * 0.01)
+                }
+                if (component.style.top + component.style.height > this.canvasStyleData.height * this.canvasStyleData.scale * 0.01) {
+                    this.canvasStyleData.height = (component.style.top + component.style.height)/(this.canvasStyleData.scale * 0.01)
+                }
                 component.id = generateID();
                 // console.log("component", component);
                 this.$store.commit('EditPage/addComponent', { component });

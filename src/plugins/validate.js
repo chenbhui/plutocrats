@@ -5,7 +5,7 @@ import VeeValidate from "vee-validate";
 import zh_CN from 'vee-validate/dist/locale/zh_CN';
 const config = {
     locale: 'zh_CN',
-    errorBagName: 'errorBags',//change if property conflicts
+    // errorBagName: 'errorBags',//change if property conflicts
     fieldsBagName:'fieldBags'
 
 };

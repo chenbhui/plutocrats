@@ -2,7 +2,9 @@
     <div id="editor" class="editor" :class="{ edit: isEdit }" :style="{
         width: changeStyleWithScale(canvasStyleData.width) + 'px',
         height: changeStyleWithScale(canvasStyleData.height) + 'px',
-        background: canvasStyleData.background,
+    background: canvasStyleData.background,
+    left:canvasStyleData.left,
+        top:canvasStyleData.top
     }" @contextmenu="handleContextMenu" @mousedown="handleMouseDown">
         <!-- 网格线 -->
         <Grid />
@@ -307,7 +309,9 @@ export default {
 .editor {
     position: relative;
     background: #fff;
-    margin: auto;
+    // margin: auto;
+    top:0;
+    left:0;
 
     .lock {
         opacity: .5;

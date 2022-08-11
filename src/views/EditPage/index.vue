@@ -8,14 +8,14 @@
                 <ComponentList />
             </section>
             <!-- 中间画布 -->
-            <!-- drop: drop 事件，在拖拽结束时触发。主要用于接收拖拽的组件信息。-->
             <section class="center">
+                <EditTool />
                 <div class="content" @drop="handleDrop" @dragover="handleDragOver" @mousedown="handleMouseDown"
                     @mouseup="deselectCurComponent">
                     <Editor />
                 </div>
             </section>
-            <!-- 右侧属性列表 -->,
+            <!-- 右侧属性列表 -->
             <section class="right">
                 <el-tabs v-model="activeName">
                     <el-tab-pane label="属性" name="attr">
@@ -47,9 +47,10 @@ import { deepCopy } from '@/utils/utils';
 import { mapState } from 'vuex';
 import generateID from '@/utils/generateID';
 import { listenGlobalKeyDown } from '@/utils/shortcutKey';
+import EditTool from '@/components/Editor/EditTool.vue';
 
 export default {
-    components: { Editor, ComponentList, AnimationList, EventList, Toolbar},
+    components: { Editor, ComponentList, AnimationList, EventList, Toolbar, EditTool },
     data() {
         return {
             activeName: 'attr',
@@ -95,7 +96,7 @@ export default {
         /* 触发 drop 事件时，使用 dataTransfer.getData() 接收传输过来的索引数据，
         然后根据索引找到对应的组件数据，再添加到画布，从而渲染组件。 */
         handleDrop(e) {
-            console.log("拖拽元素放置触发");
+            // console.log("拖拽元素放置触发");
             e.preventDefault()
             e.stopPropagation()
             const index = e.dataTransfer.getData('index');
@@ -105,11 +106,11 @@ export default {
             if (index) {
                 // console.log("index=", index);//0也能进
                 const component = deepCopy(componentList[index]);
-                console.log(component);//成功复制
+                // console.log(component);//成功复制
                 component.style.top = e.clientY - rectInfo.y;
                 component.style.left = e.clientX - rectInfo.x;
                 component.id = generateID();
-                console.log("component", component);
+                // console.log("component", component);
                 this.$store.commit('EditPage/addComponent', { component });
              /*    console.log("梅开二度");
                 console.log(this.$store.state);//验证是否成功 */
@@ -152,7 +153,7 @@ export default {
     background: #fff;
 
     main {
-        height: calc(100% - 80px);
+        height: calc(100% - 60px);
         position: relative;
 
         .left {
@@ -177,12 +178,13 @@ export default {
         }
 
         .center {
+            position: relative;
             margin-left: 200px;
             margin-right: 262px;
             background: #f5f5f5;
             height: 100%;
             overflow: auto;
-            padding: 20px;
+            padding: 60px 20px 20px;
 
             .content {
                 width: 100%;

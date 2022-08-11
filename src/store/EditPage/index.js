@@ -71,9 +71,9 @@ const mutations = {
         if (index !== undefined) {
             state.componentData.splice(index, 0, component)
         } else {
-            console.log("component进来了");
+            // console.log("component进来了");
             state.componentData.push(component);
-            console.log(state.componentData);
+            // console.log(state.componentData);
         }
     },
 

@@ -33,15 +33,14 @@
                 name:给每一个表单元素添加一个名字，需要让vee-valadite区分验证的是哪一个表单元素
                 v-validate=验证规则
                 -->
-                <input
-                  type="text"
-                  placeholder="enter your username"
-                  autocomplete="off"
+                <input 
+                  type="text" 
+                  placeholder="enter your username" 
+                  autocomplete="off" 
                   v-model="username"
-                  name="username"
-                  v-validate="{ required: true }"
-                  :class="{ invalid: errors.has('username') }"
-                />
+                  name="username" 
+                  v-validate="{ required: true }" 
+                  :class="{ invalid: errors.has('username') }" />
                 <!-- 提示错误信息 -->
                 <div class="error" v-if="errors.first('username')">
                   <i class="iconfont icon-error">
@@ -51,15 +50,9 @@
               </div>
               <label for="password">password</label>
               <div class="password">
-                <input
-                  type="password"
-                  placeholder="enter your password"
-                  autocomplete="off"
-                  v-model="password"
-                  name="password"
-                  v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }"
-                  :class="{ invalid: errors.has('password') }"
-                />
+                <input type="password" placeholder="enter your password" autocomplete="off" v-model="password"
+                  name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }"
+                  :class="{ invalid: errors.has('password') }" />
                 <!-- 提示错误信息 -->
                 <div class="error" v-if="errors.first('password')">
                   <i class="iconfont icon-error">
@@ -88,7 +81,7 @@ export default {
   },
   methods: {
     //登录
-    async userLogin() {
+   /*  async userLogin() {
       //这里是vee-valadiate提供的一个方法，如果表单验证全部成功，返回布尔值真，
       //如有有一个字段验证失败，返回布尔值false
       const success = await this.$validator.validateAll();
@@ -107,7 +100,7 @@ export default {
           alert(error.message);
         }
       }
-    },
+    }, */
   },
 };
 </script>

@@ -37,7 +37,7 @@ export default {
         }
     },
     computed: {
-        ...mapState(['curComponent']),
+        ...mapState('EditPage',['curComponent']),
         isDisabled() {
             return this.curComponent.animations.length > 1
         },

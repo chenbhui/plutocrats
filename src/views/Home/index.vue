@@ -1,253 +1,339 @@
 <template>
-  <div class="container">
-    <!-- 顶部内容区 -->
-    <div class="top-page" ref="top">
-      <div class="top-container">
-        <!-- 左边图片 -->
-        <div class="left-images">
-          <img src="@/assets/images/home.jpg" alt="" />
-        </div>
-        <!-- 右边内容 -->
-        <div class="right-content">
-          <!-- 标题 -->
-          <div class="title">
-            love and expectation <br />
-            are ahead
-          </div>
-          <!-- 文本内容 -->
-          <div class="text">
-            No matter how dark the moment is,love and expectation are always
-            ahead. The world is very simple, so is life
-          </div>
-          <!-- 按钮 -->
-          <button class="btn" @click="slideDown">SLIDE DOWN</button>
-        </div>
-      </div>
-      <!-- company -->
-      <div class="company">
-        <img src="@/assets/images/company.jpg" alt="" />
-      </div>
-    </div>
-    <div class="center-page" id="center">
-      <div class="center-container">
-        <!-- 左边内容 -->
-        <div class="right-content">
-          <!-- 标题 -->
-          <div class="title">
-            psychological service <br />
-            are ahead
-          </div>
-          <!-- 文本内容 -->
-          <div class="text">
-            No matter how dark the moment is,love and expectation are always
-            ahead. The world is very simple, so is life
-          </div>
-          <!-- 按钮 -->
-          <button class="btn">Read more</button>
-        </div>
-        <!-- 右边图片 -->
-        <div class="left-images">
-          <img src="@/assets/images/home.jpg" alt="" />
-        </div>
-      </div>
-    </div>
-    <div class="bottom-page">
-      <div class="bottom-container">
-        <div class="main-title">
-          Gain the full control over reaching your leads
-        </div>
-        <div class="imgGroup">
-          <div class="imgContainer">
-            <!-- 图片 -->
-            <img src="@/assets/images/homeleft.jpg" alt="" />
-            <!-- 容器内标题 -->
-            <div class="title">Auto-schedule your books</div>
-            <!-- 容器内的文本内容 -->
-            <div class="text">
-              you may defind the number of attempt your agent <br />
-              you may defind the number of attempt <br />
-              you may defind the number of attempt your agent <br />
-              you may defind the number of attempt <br />
+    <!-- banner -->
+    <div class="container">
+        <div class="banner">
+            <div class="summer">
+                <div class="summer-show">
+                    <div class="summer-show-img">
+                        <img src="@/assets/images/home.jpg" alt="">
+                    </div>
+                    <div class="summer-show-text">
+                        <h3>love and expectation</h3>
+                        <h3>are ahead</h3>
+                        <p class="essey">
+                            No matter how dark the moment is, love and expectation are always
+                            ahead. The world is very simple, so is life.
+                        </p>
+                        <div class="btnOPEN">SLIDE DOWN</div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <div class="imgContainer">
-            <!-- 图片 -->
-            <img src="@/assets/images/homeright.jpg" alt="" />
-            <!-- 容器内标题 -->
-            <div class="title">Auto-schedule your books</div>
-            <!-- 容器内的文本内容 -->
-            <div class="text">
-              you may defind the number of attempt your agent <br />
-              you may defind the number of attempt <br />
-              you may defind the number of attempt your agent <br />
-              you may defind the number of attempt <br />
+            <!-- 合作伙伴 -->
+            <div class="cooperation-sign">
+                <img src="@/assets/images/company.jpg" alt="">
             </div>
-          </div>
+            <!-- 服务咨询介绍 -->
+            <div class="psy-service">
+                <div class="service-show">
+                    <div class="service-show-text">
+                        <h3>psychological service</h3>
+                        <h3>are ahead</h3>
+                        <p class="essey">
+                            We help the person who needs help to resolve their inner emotions.
+                            Speak out your troubles in the form of a barometer.
+                        </p>
+                        <div class="btnOPEN">Read more</div>
+                    </div>
+                    <div class="service-show-img">
+                        <img src="@/assets/images/home.jpg" alt="">
+                    </div>
+                </div>
+            </div>
+            <!-- 科普方面 -->
+            <div class="psy-knowledge">
+                <h3>Gain the full control over reaching your leads</h3>
+                <div class="knowledge-show">
+                    <div class="knowledge-show-book">
+                        <div class="knowledge-show-img">
+                            <img src="@/assets/images/homeleft.jpg" alt="">
+                        </div>
+                        <div class="knowledgev-show-text">
+                            <h4>Auto-schedule your books</h4>
+                            <p>you may defind the number of attempt youer agent</p>
+                            <p>you may defind the number of attempt</p>
+                            <p>you may defind the number of attempt youer agent</p>
+                            <p>you may defind the</p>
+                        </div>
+                    </div>
+                    <div class="knowledge-show-case">
+                        <div class="knowledge-show-img">
+                            <img src="@/assets/images/homeright.jpg" alt="">
+                        </div>
+                        <div class="knowledge-show-text">
+                            <div class="knowledgev-show-text">
+                                <h4>Auto-schedule your News</h4>
+                                <p>you may defind the number of attempt youer agent</p>
+                                <p>you may defind the number of attempt</p>
+                                <p>you may defind the number of attempt youer agent</p>
+                                <p>you may defind the</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {};
-  },
-  methods: {
-    slideDown() {
-      scrollTo({
-        top: this.$refs.top.scrollHeight + 50,
-        left: 0,
-        behavior: "smooth",
-      });
+    name:'',
+    data() {
+        return {};
     },
-  },
+    methods: {
+        slideDown() {
+            scrollTo({
+                top: this.$refs.top.scrollHeight + 50,
+                left: 0,
+                behavior: "smooth",
+            });
+        },
+    },
 };
 </script>
 
-<style lang="less" scoped>
-.container {
-  background-color: rgb(226, 244, 247);
+<style scoped>
+.container{
+    padding-bottom: 80px;
+    background-color: rgb(226, 244, 247);
+}
+.banner {
+    margin: 0 auto;
+}
 
-  .top-page {
-    height: calc(100vh - 50px);
+.banner>div {
+    padding: 0 50px;
+}
 
-    .top-container {
-      width: 1345px;
-      margin: 0 auto;
-      height: 85%;
-      display: flex;
-      align-items: center;
-      .left-images {
-        width: 50%;
-        img {
-          width: 100%;
-        }
-      }
-      .right-content {
-        width: 50%;
-        height: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        .title {
-          color: rgb(83, 119, 172);
-          font-size: 40px;
-          font-weight: 600;
-          text-align: center;
-        }
-        .text {
-          font-size: 20px;
-          text-align: center;
-        }
-        .btn {
-          cursor: pointer;
-          color: white;
-          font-weight: 600;
-          background-color: rgb(83, 119, 172);
-          width: 200px;
-          height: 60px;
-          border: 0;
-          border-radius: 5px;
-          font-size: 20px;
-        }
-      }
-    }
-    .company {
-      width: 100%;
-      position: absolute;
-      bottom: 0;
-      img {
-        // width: 100%;
-        // height: 60px;
-        vertical-align: middle;
-        width: 100%;
-      }
-    }
-  }
-  .center-page {
-    height: 100vh;
-    .center-container {
-      width: 1345px;
-      margin: 0 auto;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      .left-images {
-        width: 50%;
-        img {
-          width: 100%;
-        }
-      }
-      .right-content {
-        width: 50%;
-        height: 60%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-around;
-        .title {
-          color: rgb(83, 119, 172);
-          font-size: 40px;
-          font-weight: 600;
-          text-align: center;
-        }
-        .text {
-          font-size: 20px;
-          text-align: center;
-        }
-        .btn {
-          cursor: pointer;
-          color: white;
-          font-weight: 600;
-          background-color: rgb(83, 119, 172);
-          width: 200px;
-          height: 60px;
-          border: 0;
-          border-radius: 5px;
-          font-size: 20px;
-        }
-      }
-    }
-  }
-  .bottom-page {
-    height: calc(100vh - 50px);
-    .bottom-container {
-      width: 1345px;
-      height: 100%;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      .main-title {
-        text-align: center;
-        font-size: 30px;
-        font-weight: 600;
-      }
-      .imgGroup {
-        display: flex;
-        justify-content: space-around;
-        .imgContainer {
-          height: 500px;
-          width: 400px;
-          border-radius: 12px;
-          border: 2px solid rgb(219, 233, 234);
-          background-color: white;
-          text-align: center;
-          img {
-            width: 380px;
-            height: 291px;
-          }
-          .title {
-            font-weight: 600;
-            font-size: 20px;
-            line-height: 80px;
-          }
-        }
-      }
-    }
-  }
+.psy-knowledge {
+    margin-top: 50px;
+}
+
+.summer-show,
+.service-show,
+.knowledge-show {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 555px;
+}
+
+.knowledge-show {
+    height: 660px;
+    padding: 88px 80px 0 80px;
+}
+
+.summer-show>div,
+.service-show>div,
+.knowledge-show>div {
+    flex: 1;
+}
+
+.summer-show-img,
+.service-show-img {
+    padding: 80px 50px 30px 50px;
+}
+
+.summer-show-img img,
+.service-show-img img {
+    width: 100%;
+    height: 100%;
+}
+
+.service-show-text,
+.summer-show-text {
+    position: relative;
+    padding: 110px 30px;
+    text-align: center;
+}
+
+.service-show-text h3,
+.summer-show-text h3 {
+    font-size: 39px;
+    color: #5377ac;
+}
+
+.service-show-text p,
+.summer-show-text p {
+    margin-top: 50px;
+    font-size: 20px;
+    color: #000;
+}
+
+.service-show-text .btnOPEN,
+.summer-show-text .btnOPEN {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 245px;
+    height: 60px;
+    margin-top: 80px;
+    line-height: 60px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #fff;
+    border-radius: 5px;
+    background: #5377ac;
+    cursor: pointer;
+}
+
+.cooperation-sign {
+    width: 100%;
+    height: 80px;
+    margin-top: 55px;
+    background: #fafafa;
+}
+
+.cooperation-sign img {
+    width: 100%;
+}
+
+.psy-knowledge h3 {
+    width: 100%;
+    text-align: center;
+    font-size: 32px;
+}
+
+.knowledge-show>div {
+    margin: 0 36px;
+    border-radius: 7px;
+    box-shadow: 0px 0px 5px#ccc;
+    background: #fff;
+    cursor: pointer;
+}
+
+.knowledge-show-img {
+    width: 100%;
+    padding: 0 30px;
+}
+
+.readus-author-img img,
+.knowledge-show-img img {
+    width: 100%;
+}
+
+.knowledgev-show-text {
+    width: 100%;
+    text-align: center;
+}
+
+.knowledgev-show-text h4 {
+    margin: 48px 0 19px 0;
+    font-size: 23px;
+}
+
+.knowledgev-show-text p {
+    line-height: 23px;
+    font-size: 16px;
+    color: #535353;
+}
+
+/* 减压模块 */
+.decompression {
+    width: 100%;
+    height: 400px;
+    padding: 0 50px;
+    background: #ffe284;
+}
+
+.decompression-wrap {
+    display: flex;
+    width: 995px;
+    max-width: 995px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+.decompression-wrap-show {
+    flex: 1;
+    margin: 20px 10px;
+    text-align: center;
+}
+
+.decompresssion-img {
+    width: 100px;
+    height: 100px;
+    margin: 45px auto 32px;
+}
+
+.decompression-wrap-show .iconfont:before {
+    color: #fff;
+    font-size: 100px;
+}
+
+.decompression-text-head {
+    margin-bottom: 30px;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.decompression-text-descri {
+    font-size: 17px;
+    line-height: 28px;
+    letter-spacing: 1px;
+}
+
+/* 关于我们 */
+.readus {
+    width: 100%;
+    margin-top: 80px;
+}
+
+.readus-img {
+    width: 100%;
+    height: 500px;
+    background: url(../../assets/images/aboutus.svg) center center no-repeat;
+}
+
+.readus-text {
+    position: relative;
+    top: -20px;
+    width: 100%;
+    height: 400px;
+}
+
+.readus-text-card {
+    width: 917px;
+    height: 370px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+    background: #fbf7f1;
+}
+
+.readus-text h3 {
+    font-size: 32px;
+}
+
+.readus-text p {
+    margin-top: 5px;
+    font-size: 15px;
+}
+
+.readus-text-card>div {
+    display: flex;
+    margin: 30px auto 0 auto;
+    width: 758px;
+    height: 221px;
+}
+
+.readus-author-img {
+    width: 221px;
+    height: 221px;
+    margin-right: 45px;
+}
+
+.readus-author-text {
+    width: 505px;
+    height: 221px;
+}
+
+.readus-author-text p {
+    text-align: left;
+    word-spacing: 3px;
+    letter-spacing: 0.3px;
+    font-size: 15px;
+    color: #134160;
 }
 </style>

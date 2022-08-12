@@ -57,6 +57,7 @@ const mutations = {
         if (width) curComponent.style.width = Math.round(width)
         if (height) curComponent.style.height = Math.round(height)
         if (rotate) curComponent.style.rotate = Math.round(rotate)
+        console.log('11')
     },
 
     setShapeSingleStyle({ curComponent }, { key, value }) {

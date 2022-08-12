@@ -40,12 +40,26 @@ export default {
         'propValue.flip.horizontal': function () {
             this.mirrorFlip()
         },
+        'propValue.url': function (){
+          this.img = document.createElement('img')
+          this.img.src = this.propValue.url
+
+          this.img.onload = () => {
+            this.ctx.drawImage(this.img, 0, 0,this.canvas.width, this.canvas.height)
+            this.mirrorFlip();
+          }
+          console.log("silly B")
+        }
     },
-    mounted() {
+  created() {
+    console.log(this.propValue.url)
+  },
+  mounted() {
         this.canvas = this.$refs.canvas
         this.ctx = this.canvas.getContext('2d')
         this.drawImage()
-    },
+
+  },
     methods: {
         drawImage() {
             const { width, height } = this.element.style

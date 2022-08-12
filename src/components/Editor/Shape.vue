@@ -285,7 +285,7 @@ export default {
             e.preventDefault()
 
             const style = { ...this.defaultStyle }
-
+            // console.log(style)
             // 组件宽高比
             const proportion = style.width / style.height;
 
@@ -297,10 +297,11 @@ export default {
 
             // 获取画布位移信息
             const editorRectInfo = this.editor.getBoundingClientRect();
-
+          console.log(e.target)
             // 获取 point 与实际拖动基准点的差值 @justJokee
             // fix https://github.com/woai3c/visual-drag-demo/issues/26#issue-937686285
             const pointRect = e.target.getBoundingClientRect();
+          // console.log(pointRect)
             // 当前点击圆点相对于画布的中心坐标
             const curPoint = {
                 x: Math.round(pointRect.left - editorRectInfo.left + e.target.offsetWidth / 2),
@@ -339,6 +340,7 @@ export default {
                 })
 
                 this.$store.commit('EditPage/setShapeStyle', style)
+
             }
 
             const up = () => {

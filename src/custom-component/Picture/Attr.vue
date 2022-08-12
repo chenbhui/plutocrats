@@ -16,18 +16,8 @@
           >
         </div>
       </el-form-item>
-        <el-form-item label="图片:">
-        <div class="img">
-          <img
-            :src="curComponent.propValue.url"
-           
-            @click="select"
-          />
-        
-         
-        </div>
-
-        <input type="file" id="file" @change="saveUrl" hidden accept="image/*" />
+      <el-form-item label="图片选择(请复制图片地址)">
+        <el-input v-model="curComponent.propValue.url" type="textarea" />
       </el-form-item>
     </el-form>
   </div>
@@ -37,51 +27,7 @@
 import CommonAttr from "@/custom-component/common/CommonAttr.vue";
 
 export default {
-  data() {
-    return {
-      // options: [
-      //   {
-      //     value: require("@/assets/images/home.jpg"),
-      //     label: "家",
-      //   },
-      //   {
-      //     value: require("@/assets/images/search.png"),
-      //     label: "搜索",
-      //   },
-      //   {
-      //     value: require("@/assets/images/star-r.png"),
-      //     label: "星星1",
-      //   },
-      //   {
-      //     value: require("@/assets/images/star-l.png"),
-      //     label: "星星2",
-      //   },
-      //   {
-      //     value: require("@/assets/images/cloud.png"),
-      //     label: "云朵",
-      //   },
-      // ],
 
-    };
-  },
-    methods: {
-    saveUrl(e) {
-      const cur = this.curComponent;
-      const p = e.target.files[0];
-      const reader = new FileReader();
-      reader.onload = function (res) {
-        cur.propValue.url = res.target.result;
-      };
-
-      reader.readAsDataURL(p);
-    },
-    select(){
-        // this.$refs.file.click()
-
-        //触发点击事件
-        document.getElementById('file').click()
-    }
-  },
   components: { CommonAttr },
   computed: {
     curComponent() {

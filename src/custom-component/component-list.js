@@ -71,6 +71,7 @@ const list = [
         icon: 'icon-charutupian',
         propValue: {
             url: require('@/assets/images/home.jpg'),
+            // url:'https://s1.ax1x.com/2022/08/10/v3s00O.jpg',
             flip: {
                 horizontal: false,
                 vertical: false,

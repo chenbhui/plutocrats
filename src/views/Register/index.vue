@@ -27,49 +27,28 @@
             <form>
               <label for="username">Username</label>
               <div class="username">
-                <input
-                  type="text"
-                  autocomplete="off"
-                  v-model="username"
-                  name="username"
-                  v-validate="{ required: true }"
-                  :class="{ invalid: errors.has('username') }"
-                />
+                <input type="text" autocomplete="off" v-model="username" name="username" v-validate="{ required: true }" :class="{ invalid: errors.has('username') }" />
                 <div class="error" v-show="errors.first('username')">
                   <i class="iconfont icon-error">
-                    {{ errors.first("username") }}
+                    {{ errors.first('username') }}
                   </i>
                 </div>
               </div>
               <label for="password">password</label>
               <div class="password">
-                <input
-                  type="password"
-                  autocomplete="off"
-                  v-model="password"
-                  name="password"
-                  v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }"
-                  :class="{ invalid: errors.has('password') }"
-                />
+                <input type="password" autocomplete="off" v-model="password" name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }" :class="{ invalid: errors.has('password') }" />
                 <div class="error" v-show="errors.first('password')">
                   <i class="iconfont icon-error">
-                    {{ errors.first("password") }}
+                    {{ errors.first('password') }}
                   </i>
                 </div>
               </div>
               <label for="ConfirmPwd">Confirm password</label>
               <div class="ConfirmPwd">
-                <input
-                  type="text"
-                  autocomplete="off"
-                  v-model="confirmPwd"
-                  name="confirmPwd"
-                  v-validate="{ required: true, is: password }"
-                  :class="{ invalid: errors.has('confirmPwd') }"
-                />
+                <input type="text" autocomplete="off" v-model="confirmPwd" name="confirmPwd" v-validate="{ required: true, is: password }" :class="{ invalid: errors.has('confirmPwd') }" />
                 <div class="error" v-show="errors.first('confirmPwd')">
                   <i class="iconfont icon-error">
-                    {{ errors.first("confirmPwd") }}
+                    {{ errors.first('confirmPwd') }}
                   </i>
                 </div>
               </div>
@@ -84,34 +63,37 @@
 
 <script>
 export default {
-  name: "register",
+  name: 'register',
   data() {
     return {
       //收集表单数据
-      username: "",
-      password: "",
-      confirmPwd: "",
-    };
+      username: '',
+      password: '',
+      confirmPwd: '',
+    }
   },
   methods: {
     //注册
     async userRegister() {
-      try {
-        const { username, password, confirmPwd } = this;
-        if (username && password && password == confirmPwd) {
-          await this.$store.dispatch("reqUserRegister", {
-            username,
-            password,
-            confirmPwd,
-          });
-          this.$router.push("/login");
+      const success = await this.$validator.validateAll()
+      if (success) {
+        try {
+          const { username, password, confirmPwd } = this
+          if (username && password && password == confirmPwd) {
+            await this.$store.dispatch('reqUserRegister', {
+              username,
+              password,
+              confirmPwd,
+            })
+            this.$router.push('/login')
+          }
+        } catch (error) {
+          alert(error.message)
         }
-      } catch (error) {
-        alert(error.message);
       }
     },
   },
-};
+}
 </script>
 
 <style scoped>
@@ -238,7 +220,7 @@ export default {
 }
 
 .divider::after {
-  content: "Or";
+  content: 'Or';
   width: 60px;
   position: absolute;
   top: 34px;

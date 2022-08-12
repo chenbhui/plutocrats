@@ -16,7 +16,7 @@ export default {
         // 2.快照——撤销
         undo(state) {
             if (state.snapshotIndex >= 0) {
-                state.snapshotIndex--
+                state.snapshotIndex--;
                 const componentData = deepCopy(state.snapshotData[state.snapshotIndex]) || []
                 if (state.curComponent) {
                     // 如果当前组件不在 componentData 中，则置空

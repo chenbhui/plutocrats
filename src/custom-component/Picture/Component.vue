@@ -48,7 +48,6 @@ export default {
             this.ctx.drawImage(this.img, 0, 0,this.canvas.width, this.canvas.height)
             this.mirrorFlip();
           }
-          console.log("silly B")
         }
     },
   created() {

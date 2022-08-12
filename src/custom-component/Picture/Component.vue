@@ -41,13 +41,8 @@ export default {
             this.mirrorFlip()
         },
         'propValue.url': function (){
-          this.img = document.createElement('img')
-          this.img.src = this.propValue.url
-
-          this.img.onload = () => {
-            this.ctx.drawImage(this.img, 0, 0,this.canvas.width, this.canvas.height)
-            this.mirrorFlip();
-          }
+          this.isFirst = true
+          this.drawImage()
         }
     },
   created() {

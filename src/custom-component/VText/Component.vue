@@ -47,7 +47,11 @@ export default {
     },
     methods: {
         handleInput(e) {
-            this.$emit('input', this.element, e.target.innerHTML)
+            this.$emit('input', this.element, e.target.innerHTML);
+            //获得文本盒子的高约束shape
+            let textHeight = Math.round(this.$refs.text.getBoundingClientRect().height);
+            this.$store.commit('EditPage/setShapeStyle', {height:textHeight})
+            
         },
 
         handleKeydown(e) {

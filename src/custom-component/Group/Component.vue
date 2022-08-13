@@ -9,7 +9,7 @@
 </template>
 
 <script>
-
+// import createGroupStyle from "@/utils/createGroupStyle.js";
 export default {
     props: {
         propValue: {
@@ -21,6 +21,9 @@ export default {
             default: () => { },
         },
     },
+    created() {
+        // createGroupStyle(this.element);
+    }
 }
 </script>
 

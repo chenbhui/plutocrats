@@ -2,13 +2,13 @@
     <div v-if="editMode == 'edit'" class="v-anchor" @keydown="handleKeydown" @keyup="handleKeyup">
         <div ref="anchor" :contenteditable="canEdit" :class="{ canEdit }" :tabindex="element.id"
             :style="{ verticalAlign: element.style.verticalAlign }" @dblclick="setEdit" @paste="clearStyle"
-            @mousedown="handleMousedown" @blur="handleBlur" @input="handleInput" v-html="localelement.propValue"></div>
+            @mousedown="handleMousedown" @blur="handleBlur" @input="handleInput" v-html="localelement.propValue.value"></div>
     </div>
     <div v-else class="v-anchor preview">
         <a 
             :style="{ verticalAlign: element.style.verticalAlign }" 
-            v-html="localelement.propValue"
-            href="https://www.iconfont.cn"
+            v-html="localelement.propValue.value"
+            :href="localelement.propValue.href"
             target="_blank"
         ></a>
     </div>
@@ -21,9 +21,9 @@ import { keycodes } from '@/utils/shortcutKey.js'
 export default {
     props: {
         propValue: {
-            type: String,
+            type: Object,
             require: true,
-            default: '',
+            default: () => { },
         },
         element: {
             type: Object,
@@ -47,7 +47,11 @@ export default {
     },
     methods: {
         handleInput(e) {
-            this.$emit('input', this.element, e.target.innerHTML)
+            this.$emit('input', this.element, e.target.innerHTML);
+            //获得文本盒子的高约束shape
+            let anchorHeight = Math.round(this.$refs.anchor.getBoundingClientRect().height);
+            this.$store.commit('EditPage/setShapeStyle', { height: anchorHeight })
+
         },
 
         handleKeydown(e) {
@@ -91,14 +95,14 @@ export default {
         },
 
         handleBlur(e) {
-            this.localelement.propValue = e.target.innerHTML || '&nbsp;';
+            // this.localelement.propValue.value = e.target.innerHTML || '&nbsp;';
             const html = e.target.innerHTML;
             if (html !== '') {
-                this.localelement.propValue = e.target.innerHTML;
+                this.localelement.propValue.value = e.target.innerHTML;
             } else {
-                this.localelement.propValue = ''
+                this.localelement.propValue.value = ''
                 this.$nextTick(() => {
-                    this.localelement.propValue = '&nbsp;'
+                    this.localelement.propValue.value = '&nbsp;'
                 })
             }
             this.canEdit = false
@@ -147,6 +151,7 @@ export default {
 .preview {
     user-select: none;
     a{
+        display: block;
         color:blue;
     }
 }

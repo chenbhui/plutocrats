@@ -46,7 +46,7 @@ export default {
         }
     },
   created() {
-    console.log(this.propValue.url)
+    //   console.log(this.propValue.url);
   },
   mounted() {
         this.canvas = this.$refs.canvas

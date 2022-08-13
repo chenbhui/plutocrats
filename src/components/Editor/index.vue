@@ -1,11 +1,16 @@
 <template>
-    <div id="editor" class="editor" :class="{ edit: isEdit }" :style="{
-        width: changeStyleWithScale(canvasStyleData.width) + 'px',
-        height: changeStyleWithScale(canvasStyleData.height) + 'px',
-    background: canvasStyleData.background,
-    left:canvasStyleData.left,
-        top:canvasStyleData.top
-    }" @contextmenu="handleContextMenu" @mousedown="handleMouseDown">
+    <div id="editor" class="editor" 
+        :class="{ edit: isEdit }" 
+        :style="{
+            width: changeStyleWithScale(canvasStyleData.width) + 'px',
+            height: changeStyleWithScale(canvasStyleData.height) + 'px',
+            background: canvasStyleData.background,
+            left:canvasStyleData.left,
+            top:canvasStyleData.top
+        }" 
+        @contextmenu="handleContextMenu" 
+        @mousedown="handleMouseDown"
+    >
         <!-- 网格线 -->
         <Grid />
 
@@ -33,7 +38,7 @@
             ></component>
             <component 
                 :is="item.component" 
-                v-else-if="item.component != 'VText'" 
+                v-else-if="(item.component != 'VText'&&item.component != 'AnchorPoint')" 
                 :id="'component' + item.id"
                 class="component" 
                 :style="getComponentStyle(item.style)" 
@@ -47,7 +52,6 @@
                 :style="getComponentStyle(item.style)" 
                 :prop-value="item.propValue" 
                 :element="item"
-                @input="handleInput"
             ></component>
         </Shape>
         <!-- 右击菜单 -->
@@ -127,19 +131,19 @@ export default {
                 e.preventDefault()
             }
 
-            this.hideArea()
+            this.hideArea();
 
-            // 获取编辑器的位移信息，每次点击时都需要获取一次。主要是为了方便开发时调试用。
-            const rectInfo = this.editor.getBoundingClientRect()
-            this.editorX = rectInfo.x
-            this.editorY = rectInfo.y
+            // 获取编辑器的位移信息，每次点击时都需要获取一次。
+            const rectInfo = this.editor.getBoundingClientRect();
+            this.editorX = rectInfo.x;
+            this.editorY = rectInfo.y;
 
-            const startX = e.clientX
-            const startY = e.clientY
-            this.start.x = startX - this.editorX
-            this.start.y = startY - this.editorY
+            const startX = e.clientX;
+            const startY = e.clientY;
+            this.start.x = startX - this.editorX;
+            this.start.y = startY - this.editorY;
             // 展示选中区域
-            this.isShowArea = true
+            this.isShowArea = true;
 
             const move = (moveEvent) => {
                 this.width = Math.abs(moveEvent.clientX - startX)
@@ -154,15 +158,15 @@ export default {
             }
 
             const up = (e) => {
-                document.removeEventListener('mousemove', move)
-                document.removeEventListener('mouseup', up)
+                document.removeEventListener('mousemove', move);
+                document.removeEventListener('mouseup', up);
 
                 if (e.clientX == startX && e.clientY == startY) {
-                    this.hideArea()
-                    return
+                    this.hideArea();
+                    return;
                 }
 
-                this.createGroup()
+                this.createGroup();
             }
 
             document.addEventListener('mousemove', move)
@@ -195,25 +199,28 @@ export default {
 
             // 根据选中区域和区域中每个组件的位移信息来创建 Group 组件
             // 要遍历选择区域的每个组件，获取它们的 left top right bottom 信息来进行比较
+            //取得选中区域的最左、最上、最右、最下四个方向的数值，从而得出一个能包含区域内所有组件的最小区域
             let top = Infinity, left = Infinity
             let right = -Infinity, bottom = -Infinity
+            
             areaData.forEach(component => {
-                let style = {}
+                let style = {};
                 if (component.component == 'Group') {
                     component.propValue.forEach(item => {
-                        const rectInfo = $(`#component${item.id}`).getBoundingClientRect()
-                        style.left = rectInfo.left - this.editorX
-                        style.top = rectInfo.top - this.editorY
-                        style.right = rectInfo.right - this.editorX
-                        style.bottom = rectInfo.bottom - this.editorY
+                        //获取每个组件相对于浏览器视口四个方向上的信息
+                        const rectInfo = $(`#component${item.id}`).getBoundingClientRect();
+                        style.left = rectInfo.left - this.editorX;
+                        style.top = rectInfo.top - this.editorY;
+                        style.right = rectInfo.right - this.editorX;
+                        style.bottom = rectInfo.bottom - this.editorY;
 
-                        if (style.left < left) left = style.left
-                        if (style.top < top) top = style.top
-                        if (style.right > right) right = style.right
-                        if (style.bottom > bottom) bottom = style.bottom
+                        if (style.left < left) left = style.left;
+                        if (style.top < top) top = style.top;
+                        if (style.right > right) right = style.right;
+                        if (style.bottom > bottom) bottom = style.bottom;
                     })
                 } else {
-                    style = getComponentRotatedStyle(component.style)
+                    style = getComponentRotatedStyle(component.style);
                 }
 
                 if (style.left < left) left = style.left
@@ -287,20 +294,21 @@ export default {
             return getSVGStyle(style, this.svgFilterAttrs)
         },
 
-        handleInput(element, value) {
+       /*  handleInput(element, value) {
             // 根据文本组件高度调整 shape 高度
             this.$store.commit('EditPage/setShapeStyle', { height: this.getTextareaHeight(element, value) })
         },
 
         getTextareaHeight(element, text) {
-            let { lineHeight, fontSize, height } = element.style
+            let { lineHeight, fontSize, height } = element.style;
             if (lineHeight === '') {
                 lineHeight = 1.5
             }
 
-            const newHeight = (text.split('<br>').length - 1) * lineHeight * fontSize
+            const newHeight = (text.split('<br>').length - 1) * lineHeight * fontSize;
+            console.log("newHeight", newHeight);
             return height > newHeight ? height : newHeight
-        },
+        }, */
     },
 }
 </script>

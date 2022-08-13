@@ -220,13 +220,13 @@ export default {
         handleMouseDownOnShape(e) {
             this.$store.commit('EditPage/setInEditorStatus', true); // 传值让复制粘贴这些功能生效
             this.$store.commit('EditPage/setClickComponentStatus', true);//传值表示点击画布时选中组件
-            if (isPreventDrop(this.element.component)) {//不是svg或着文本\圆形\矩形的关闭默认行为
+            if (isPreventDrop(this.element.component)) {//不是svg或文本/圆形/矩形的关闭默认行为
                 e.preventDefault();
             }
 
             e.stopPropagation();
             this.$store.commit('EditPage/setCurComponent', { component: this.element, index: this.index })
-            if (this.element.isLock) return
+            if (this.element.isLock) return;
 
             this.cursors = this.getCursor(); // 根据旋转角度获取光标位置
 

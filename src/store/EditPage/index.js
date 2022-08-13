@@ -48,20 +48,12 @@ const mutations = {
         state.canvasStyleData = style
     },
 
-    setCurComponent(state, {component, index}) {
+    setCurComponent(state, { component, index }) {
         state.curComponent = component
         state.curComponentIndex = index
+        // console.log(state.curComponent);
     },
 
-
-    setShapeStyle({curComponent}, {top, left, width, height, rotate}) {
-        if (top) curComponent.style.top = Math.round(top)
-        if (left) curComponent.style.left = Math.round(left)
-        if (width) curComponent.style.width = Math.round(width)
-        if (height) curComponent.style.height = Math.round(height)
-        if (rotate) curComponent.style.rotate = Math.round(rotate)
-        console.log('11')
-    },
 
     setShapeStyle({curComponent}, {top, left, width, height, rotate}) {
         if (top) curComponent.style.top = Math.round(top)

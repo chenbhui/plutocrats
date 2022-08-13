@@ -3,10 +3,10 @@
         <CommonAttr></CommonAttr>
         <el-form>
             <el-form-item label="内容">
-                <el-input v-model="curComponent.propValue" type="textarea" />
+                <el-input v-model="curComponent.propValue.value" type="textarea" />
             </el-form-item>
             <el-form-item label="跳转到">
-                <el-input v-model="curComponent.propValue" type="textarea" />
+                <el-input v-model="curComponent.propValue.href" type="textarea" />
             </el-form-item>
         </el-form>
     </div>

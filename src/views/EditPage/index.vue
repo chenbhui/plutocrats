@@ -130,7 +130,7 @@ export default {
             // 默认不能移动编辑
             e.preventDefault()
             // 视觉效果
-            e.dataTransfer.dropEffect = 'copy'
+            e.dataTransfer.dropEffect = 'copy';
         },
 
         handleMouseDown(e) {

@@ -93,8 +93,8 @@ export function getComponentRotatedStyle(style) {
         style.width = newWidth
         style.height = newHeight
     } else {
-        style.bottom = style.top + style.height
-        style.right = style.left + style.width
+        style.bottom = style.top + style.height;
+        style.right = style.left + style.width;
     }
 
     return style

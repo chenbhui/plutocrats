@@ -72,21 +72,30 @@
       <div class="right">
         <!-- 添加项目 -->
         <div class="addProject">
-          <a href="#" class="iconfont icon-zengjia"></a>
+          <router-link to="editPage" class="iconfont icon-zengjia" style="cursor: pointer"></router-link>
         </div>
         <!-- 项目列表 -->
         <ul class="projectList">
-          <li class="work" v-for="item in projectList" :key="item.id">
-            <p>{{item.projectName}}</p>
+          <li class="work" v-for="item in projectList" :key="item.templateid">
+            <p>{{ item.templatename }}</p>
             <ul class="operate">
               <li>
-                <a href="#"><sapn class="iconfont icon-bianji"></sapn>编辑</a>
+                <a @click="updateProject(item.templateid)" style="cursor: pointer">
+                  <span class="iconfont icon-bianji"></span>
+                  编辑
+                </a>
               </li>
               <li>
-                <a href="#"><sapn class="iconfont icon-baocun"></sapn>另存</a>
+                <a @click="sourceCode(item.templateid)" style="cursor: pointer">
+                  <span class="iconfont icon-baocun"></span>
+                  源码
+                </a>
               </li>
               <li>
-                <a href="#"><sapn class="iconfont icon-shanchu"></sapn>删除</a>
+                <a @click="deleteProject(item.templateid)" style="cursor: pointer">
+                  <span class="iconfont icon-shanchu"></span>
+                  删除
+                </a>
               </li>
             </ul>
           </li>
@@ -99,10 +108,41 @@
 </template>
 
 <script>
-import { mapState} from 'vuex'
+import { mapState } from 'vuex'
+import toast from '@/utils/toast'
 export default {
+  name: 'myProject',
   computed: {
     ...mapState('MyProject', ['projectList']),
+  },
+  methods: {
+    // 编辑项目
+    async updateProject(templateid) {
+      try {
+        await this.$store.dispatch('MyProject/updateProject', templateid)
+        this.$router.push(`/editPage?templateid=${templateid}`)
+      } catch (err) {
+        console.log(err.message)
+      }
+    },
+
+    // 源码
+    sourceCode(templateid) {
+      console.log('sourceCode', templateid)
+    },
+    // 删除项目
+    async deleteProject(templateid) {
+      try {
+        await this.$store.dispatch('MyProject/deleteProject', templateid)
+        this.$store.dispatch('MyProject/getProject')
+      } catch (error) {
+        toast('请登录！')
+      }
+    },
+  },
+  mounted() {
+    // 获取模板信息在首页展示
+    this.$store.dispatch('MyProject/getProject')
   },
 }
 </script>
@@ -328,7 +368,7 @@ export default {
                 .icon-baocun,
                 .icon-shanchu {
                   display: block;
-                  margin: 2px 3px 0 3px;
+                  margin: 6px 3px 0 3px;
                   font-size: 26px;
                 }
               }

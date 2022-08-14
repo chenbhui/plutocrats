@@ -35,6 +35,18 @@ export const reqFormWork = () => requests({
     url: '/getall',
     method: 'post'
 })
+
+// 查看项目
+export const updateProject = (templateid) => requests({
+    url: `/getone?templateid=${templateid}`,
+    method:'post'
+})
+
+// 删除项目
+export const deleteProject = (templateid) => requests({
+    url: `/delete?templateid=${templateid}`,
+    method:'post'
+})
 /*
 使用例子
 export function name() {

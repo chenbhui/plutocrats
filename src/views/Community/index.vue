@@ -96,6 +96,7 @@ export default {
 <style lang="less" scoped>
 .community {
   width: 100%;
+  
   .body {
     width: 1345px;
     margin: 0 auto;

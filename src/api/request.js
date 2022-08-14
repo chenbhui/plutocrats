@@ -7,7 +7,7 @@ import 'nprogress/nprogress.css'; // 若要修改进度条样式 可在该css文
 //利用create创建实例
 const requests = axios.create({
     //基础路径 发请求时自带
-    baseURL: '',
+    baseURL: '/api',
     //超时时间
     timeout: 5000
 })
@@ -15,9 +15,9 @@ const requests = axios.create({
 //请求拦截器
 requests.interceptors.request.use((config) => {
     // 需要携带token带给服务器
-    if (store.state.user.token) {
-        config.headers.token = store.state.user.token;
-    }
+    // if (store.state.user.token) {
+    //     config.headers.token = store.state.user.token;
+    // }
     nprogress.start();
     return config //headers在config对象中
 })

@@ -29,6 +29,12 @@ export const reqLogout = () => requests({
     url: '/user/passport/logout',
     method: 'get'
 })
+
+// 模板列表
+export const reqFormWork = () => requests({
+    url: '/getall',
+    method: 'post'
+})
 /*
 使用例子
 export function name() {

@@ -48,22 +48,22 @@
       <!-- 模板列表 -->
       <div class="formWork">
         <ul>
-          <li v-for="item in formWorkList" :key="item.id">
-            <a class="formImg" @click="addBrowse(item.id)">
-              <img src="@/assets/images/formWork.png" alt="" />
+          <li v-for="(item,index) in formWorkList" :key="item.templateid">
+            <a class="formImg" @click="addBrowse(index)">
+              <img :src="item.templateimg" alt="" />
             </a>
             <div class="information">
               <div class="left">
                 <a href="#">
-                  <img src="@/assets/images/author3.jpg" alt="" />
-                  {{ item.name }}
+                  <img :src="item.iconurl" alt="" />
+                  {{ item.username}}
                 </a>
               </div>
               <div class="right">
-                <a @click="changeLikes(item.id)"><span class="iconfont icon-xiai" :style="{ color: item.likesColor }"> </span></a>
-                {{ item.likes }}
+                <a @click="changeLikes({ $event, index })"><span class="iconfont icon-xiai"></span></a>
+                {{ item.likenum }}
                 <span class="iconfont icon-yanjing"></span>
-                {{ item.browses }}
+                {{ item.publish_sign }}
               </div>
             </div>
           </li>
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { mapState, mapActions } from 'vuex'
+import { mapState, mapActions,mapMutations } from 'vuex'
 
 export default {
   computed: {
@@ -82,13 +82,14 @@ export default {
   },
   methods: {
     // 借助mapMutations生成对应的方法，方法中会调用commit去联系mutations(对象写法)
-    // ...mapMutations('Community', { addBrowse: 'addBrowse'}),
+    ...mapMutations('Community', { addBrowse: 'ADDBROWSES'}),
     // 借助mapActions生成对应的方法，方法中会调用dispatch去联系actions(对象写法)
-    ...mapActions('Community', { changeColor: 'changeColor', changeLikes: 'changeLikes', addBrowse: 'addBrowse' }),
+    ...mapActions('Community', { changeColor: 'changeColor', changeLikes: 'changeLikes' }),
   },
-  // mounted() {
-  //   console.log(this.$store)
-  // },
+  mounted() {
+    // 获取模板信息在首页展示
+    this.$store.dispatch('Community/getFormWork');
+  },
 }
 </script>
 
@@ -278,6 +279,9 @@ export default {
                 .icon-xiai {
                   color: #9e9ea7;
                   font-size: 16px;
+                }
+                .red{
+                  color: rgb(226, 42, 42);
                 }
               }
               .icon-yanjing {

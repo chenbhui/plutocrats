@@ -69,6 +69,7 @@ export default {
     showMyself() {
       //myself data
       this.showAuthorPartItem = !this.showAuthorPartItem;
+      this.$router.push('/more');
     }
   },
   mounted() {

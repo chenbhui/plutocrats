@@ -36,9 +36,12 @@ const actions = {
     let result = await updateProject(templateid)
     if (result.code === 200) {
       console.log(result);
+      const templatedata = JSON.parse(result.data.templatedata);
+      console.log(templatedata);
       //改变当前模板信息
       commit('setCurprojectData', result.data)
-      localStorage.setItem("canvasData",result.data.templatedata);
+      localStorage.setItem("canvasData", JSON.stringify(templatedata.canvasData));
+      localStorage.setItem("canvasStyle", JSON.stringify(templatedata.canvasStyle));
       //方法一：解决编辑页一刷新就丢数据的问题
       // localStorage.setItem("CurprojectData", JSON.stringify(result.data));
       return 'ok'

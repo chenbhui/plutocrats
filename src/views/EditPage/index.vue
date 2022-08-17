@@ -17,7 +17,7 @@
             </section>
             <!-- 右侧属性列表 -->
             <section class="right">
-                <el-tabs v-model="activeName">
+                <el-tabs v-model="activeName" class="attrBox">
                     <el-tab-pane label="属性" name="attr">
                         <component :is="curComponent.component + 'Attr'" v-if="curComponent" />
                         <p v-else class="placeholder">请选择组件</p>
@@ -150,6 +150,7 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
 .editPage {
     height: 100vh;
     background: #fff;
@@ -176,6 +177,9 @@ export default {
 
             .el-select {
                 width: 100%;
+            }
+            .attrBox{
+                padding:0 10px;
             }
         }
 

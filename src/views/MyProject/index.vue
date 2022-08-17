@@ -143,6 +143,7 @@ export default {
     clearLocalCanvasData() {
       console.log("我们真棒");
       localStorage.removeItem('canvasData');
+      localStorage.removeItem('canvasStyle');
       this.$router.push('/editPage');
       this.$store.commit('MyProject/setCurprojectData', '');
     }

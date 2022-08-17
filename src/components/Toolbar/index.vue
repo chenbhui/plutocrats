@@ -129,12 +129,14 @@ export default {
         },
         // 发布
         async PublicRelease() {
-            // 1.发布前得先保存，否则提示
-            // 2.询问是否确认发布，是的话发送请求并生成链接可以复制
-            alert("是否确定发布？");
+            //询问是否已经保存，是的话发送请求并生成链接可以复制
+            alert("是否已经保存？");
             //请求数据
             let { openid, templateid } = this.curprojectData;
-            let templatedata = JSON.stringify(deepCopy(this.componentData));
+            let templatedata = JSON.stringify({
+                "canvasData": deepCopy(this.componentData),
+                "canvasStyle": deepCopy(this.canvasStyleData),
+            });
             let templatename = this.$refs.templateName.innerHTML;
             try {
                 await this.$store.dispatch('EditPage/releaseTemplate', {
@@ -143,14 +145,11 @@ export default {
                     templatename,
                     templatedata,
                 })
-                this.$message.success('保存成功');
+                this.$message.success('发布成功');
+                this.showPublicReleaseLink = true;
             } catch (err) {
                 toast(err.message);
             }
-
-
-            this.showPublicReleaseLink = true;
-            this.$message.success('发布成功');
         },
         onCopy() {
             this.showPublicReleaseLink = false;
@@ -177,14 +176,17 @@ export default {
         },
 
         async save() {
-            console.log('牛奶', this.componentData);
             this.getTime();
             this.modifyName = '';
             localStorage.setItem('canvasData', JSON.stringify(this.componentData))
             localStorage.setItem('canvasStyle', JSON.stringify(this.canvasStyleData))
             // 1.保存这里要发一次请求，让后台保存数据
             let { openid, templateid } = this.curprojectData;
-            let templatedata = JSON.stringify(deepCopy(this.componentData));
+            // let templatedata = JSON.stringify(deepCopy(this.componentData));
+            let templatedata = JSON.stringify({
+                "canvasData": deepCopy(this.componentData),
+                "canvasStyle": deepCopy(this.canvasStyleData),
+            });
             let templatename = this.$refs.templateName.innerHTML;
             try {
                 await this.$store.dispatch('EditPage/saveTemplate', {

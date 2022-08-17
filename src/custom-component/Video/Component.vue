@@ -1,8 +1,7 @@
 
 <template>
-    <div style="overflow: hidden;">
-        <!-- <canvas ref="canvas" width="480" height="640" style="width:100%; height:100%"></canvas> -->
-        <video :src="propValue.url" controls width="100%" height="100%"></video>
+    <div class="video-box" style="overflow: hidden;">
+        <video :src="propValue.url" controls></video>
     </div>
 </template>
 
@@ -33,8 +32,18 @@ export default {
 </script>
 <style lang="less" scoped>
 
-video{
-    /* 水平镜像翻转 */
-    // transform: rotateY(180deg);
+.video-box{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+    video{
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        object-fit: cover;
+    }
 }
 </style>

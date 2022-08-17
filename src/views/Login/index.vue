@@ -26,7 +26,7 @@
               <div class="auth-connection-mean iconfont icon-weixin"></div>
             </div>
             <div class="divider"></div>
-            <form>
+            <form action="javascript:;">
               <label for="username">Username</label>
               <div class="username">
                 <!-- 
@@ -51,7 +51,7 @@
               <label for="password">password</label>
               <div class="password">
                 <input type="password" placeholder="enter your password" autocomplete="off" v-model="password"
-                  name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }"
+                  name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{6,20}$/ }"
                   :class="{ invalid: errors.has('password') }" />
                 <!-- 提示错误信息 -->
                 <div class="error" v-if="errors.first('password')">
@@ -60,7 +60,7 @@
                   </i>
                 </div>
               </div>
-              <button @click.prevent="userLogin">Sign In</button>
+              <button @click.prevent="userLogin()">Sign In</button>
             </form>
           </div>
         </div>
@@ -70,6 +70,7 @@
 </template>
 
 <script>
+import toast from '@/utils/toast';
 export default {
   name: "Login",
   data() {
@@ -81,26 +82,25 @@ export default {
   },
   methods: {
     //登录
-   /*  async userLogin() {
+    async userLogin() {
       //这里是vee-valadiate提供的一个方法，如果表单验证全部成功，返回布尔值真，
       //如有有一个字段验证失败，返回布尔值false
       const success = await this.$validator.validateAll();
-      // console.log(success)
-      //全部表单验证成功,在向服务器发请求,进行注册
-      //只要有一个表单没有成功,不会发请求
       if (success) {
         try {
-          //如果成功 -- 路由跳转
-          const { username, password } = this; //结构出数据,方便使用,注意this后面加分号,不然和下面的判断一起会报错
-          //下面简单判断再派发action,手机号&&验证码&&密码==验证密码的时候,才派发action
-          await this.$store.dispatch("userRegister", { username, password });
-          //注册成功需要路由跳转
-          this.$router.push("/login");
+          const { username, password } = this
+          await this.$store.dispatch('User/reUserLogin', {
+            username,
+            password,
+            'remember-me':false,
+          })
+          toast('登录成功', 'success');
+          this.$router.push("/myproject");
         } catch (error) {
-          alert(error.message);
+          toast(error.message);
         }
       }
-    }, */
+    },
   },
 };
 </script>

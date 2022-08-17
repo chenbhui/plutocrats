@@ -231,7 +231,7 @@ export default {
             this.$store.commit('EditPage/setEditMode', 'preview')
         },
 
-        save() {
+       /*  save() {
             localStorage.setItem('canvasData', JSON.stringify(this.componentData))
             localStorage.setItem('canvasStyle', JSON.stringify(this.canvasStyleData))
             // 1.保存这里要发一次请求，让后台保存数据
@@ -239,7 +239,7 @@ export default {
             // let Totaldata = JSON.stringify(this.componentData);
             // 2.
             this.$message.success('保存成功');
-        },
+        }, */
 
         clearCanvas() {
             this.$store.commit('EditPage/setCurComponent', { component: null, index: null })

@@ -2,14 +2,21 @@ import { reqFormWork,updateProject,deleteProject} from '@/api'
 const state = {
   // 模板中的信息列表
   projectList: [],
+  //当前模板信息
+  curprojectData:[],
 }
 
 const mutations = {
   // 项目列表赋值
   GETPROJECT(state, projectList) {
-    console.log('mutations中的GETPROJECT被调用了')
+    // console.log('mutations中的GETPROJECT被调用了')
     state.projectList = projectList
   },
+  setCurprojectData(state, curprojectData) {
+    console.log('mutations中的setCurprojectData被调用了')
+    state.curprojectData = curprojectData;
+    console.log(state.curprojectData);
+  }
 }
 
 const actions = {
@@ -28,6 +35,12 @@ const actions = {
     console.log('action中的updateProject被调用了')
     let result = await updateProject(templateid)
     if (result.code === 200) {
+      console.log(result);
+      //改变当前模板信息
+      commit('setCurprojectData', result.data)
+      localStorage.setItem("canvasData",result.data.templatedata);
+      //方法一：解决编辑页一刷新就丢数据的问题
+      // localStorage.setItem("CurprojectData", JSON.stringify(result.data));
       return 'ok'
     }
   },

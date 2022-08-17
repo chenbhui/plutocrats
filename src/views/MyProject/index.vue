@@ -72,7 +72,7 @@
       <div class="right">
         <!-- 添加项目 -->
         <div class="addProject">
-          <router-link to="editPage" class="iconfont icon-zengjia" style="cursor: pointer"></router-link>
+          <p class="iconfont icon-zengjia" style="cursor: pointer" @click="clearLocalCanvasData()"></p>
         </div>
         <!-- 项目列表 -->
         <ul class="projectList">
@@ -139,10 +139,17 @@ export default {
         toast('请登录！')
       }
     },
+    //清除本地的CanvasData（上一次的编辑页面内容）
+    clearLocalCanvasData() {
+      console.log("我们真棒");
+      localStorage.removeItem('canvasData');
+      this.$router.push('/editPage');
+      this.$store.commit('MyProject/setCurprojectData', '');
+    }
   },
   mounted() {
     // 获取模板信息在首页展示
-    this.$store.dispatch('MyProject/getProject')
+    this.$store.dispatch('MyProject/getProject');
   },
 }
 </script>
@@ -325,7 +332,7 @@ export default {
         border-radius: 8px;
         border: 1px solid #ccc;
         background-color: #fff;
-        a {
+        p {
           display: block;
           color: #3e99e0;
           font-size: 80px;

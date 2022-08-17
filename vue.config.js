@@ -5,6 +5,7 @@ module.exports = defineConfig({
   // 解决动态挂载
   runtimeCompiler: true,
   devServer: {
+    port:80,
     proxy: {
       '/api': {
         target: 'http://www.yankeyu.top:8088',

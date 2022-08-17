@@ -24,7 +24,7 @@
               <div class="auth-connection-mean iconfont icon-weixin"></div>
             </div>
             <div class="divider"></div>
-            <form>
+            <form action="javascript:;">
               <label for="username">Username</label>
               <div class="username">
                 <input type="text" autocomplete="off" v-model="username" name="username" v-validate="{ required: true }" :class="{ invalid: errors.has('username') }" />
@@ -36,7 +36,7 @@
               </div>
               <label for="password">password</label>
               <div class="password">
-                <input type="password" autocomplete="off" v-model="password" name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{8,20}$/ }" :class="{ invalid: errors.has('password') }" />
+                <input type="password" autocomplete="off" v-model="password" name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{6,20}$/ }" :class="{ invalid: errors.has('password') }" />
                 <div class="error" v-show="errors.first('password')">
                   <i class="iconfont icon-error">
                     {{ errors.first('password') }}
@@ -45,14 +45,14 @@
               </div>
               <label for="ConfirmPwd">Confirm password</label>
               <div class="ConfirmPwd">
-                <input type="text" autocomplete="off" v-model="confirmPwd" name="confirmPwd" v-validate="{ required: true, is: password }" :class="{ invalid: errors.has('confirmPwd') }" />
+                <input type="password" autocomplete="off" v-model="confirmPwd" name="confirmPwd" v-validate="{ required: true, is: password }" :class="{ invalid: errors.has('confirmPwd') }" />
                 <div class="error" v-show="errors.first('confirmPwd')">
                   <i class="iconfont icon-error">
                     {{ errors.first('confirmPwd') }}
                   </i>
                 </div>
               </div>
-              <button @click="userRegister">Sign up</button>
+              <button @click="userRegister()">Sign up</button>
             </form>
           </div>
         </div>
@@ -62,6 +62,7 @@
 </template>
 
 <script>
+import toast from '@/utils/toast';
 export default {
   name: 'register',
   data() {
@@ -75,20 +76,20 @@ export default {
   methods: {
     //注册
     async userRegister() {
-      const success = await this.$validator.validateAll()
+      const success = await this.$validator.validateAll();
       if (success) {
         try {
-          const { username, password, confirmPwd } = this
-          if (username && password && password == confirmPwd) {
-            await this.$store.dispatch('reqUserRegister', {
+          const { username, password} = this
+          if (username && password) {
+            await this.$store.dispatch('User/reqUserRegister', {
               username,
               password,
-              confirmPwd,
             })
-            this.$router.push('/login')
+            toast('注册成功', 'success');
+            this.$router.push('/login');
           }
         } catch (error) {
-          alert(error.message)
+          toast(error.message);
         }
       }
     },

@@ -71,6 +71,9 @@ export default {
         // console.log("我真棒");
         // console.log(this.$store.state);
     },
+    mounted() {
+        
+    },
     methods: {
         restore() {
             // 用保存的数据恢复画布
@@ -100,13 +103,9 @@ export default {
             e.preventDefault()
             e.stopPropagation()
             const index = e.dataTransfer.getData('index');
-            // console.log(e.dataTransfer);
-            // console.log(index);//从0开始
             const rectInfo = this.editor.getBoundingClientRect();
             if (index) {
-                // console.log("index=", index);//0也能进
                 const component = deepCopy(componentList[index]);
-                // console.log(component);//成功复制
                 component.style.top = e.clientY - rectInfo.y;
                 component.style.left = e.clientX - rectInfo.x;
                 // 逻辑增加
@@ -117,16 +116,12 @@ export default {
                     this.canvasStyleData.height = (component.style.top + component.style.height)/(this.canvasStyleData.scale * 0.01)
                 }
                 component.id = generateID();
-                // console.log("component", component);
                 this.$store.commit('EditPage/addComponent', { component });
-             /*    console.log("梅开二度");
-                console.log(this.$store.state);//验证是否成功 */
                 this.$store.commit('EditPage/recordSnapshot');
             }
         },
 
         handleDragOver(e) {
-            // console.log("组件被拖进后悬停");
             // 默认不能移动编辑
             e.preventDefault()
             // 视觉效果

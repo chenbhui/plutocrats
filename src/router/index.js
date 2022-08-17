@@ -39,6 +39,12 @@ const routes = [
     component: () => import('../views/Community')
   },
   {
+    path: '/more',
+    name: 'more',
+    meta: { show: true },
+    component: () => import('../views/More')
+  },
+  {
     path: '*',
     redirect: '/home',
   }

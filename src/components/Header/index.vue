@@ -10,28 +10,29 @@
       <div class="widget-area">
         <ul class="nav">
           <li>
-            <router-link to="/chatroom">PSY SERVICE</router-link>
-          </li>
-          <li><a href="javascript:;">DECOMPRESSION</a></li>
-          <li>
-            <router-link to="/knowledge">PSY KNOWLEDGE</router-link>
+            <router-link to="/home">INTRUDUCTION</router-link>
           </li>
           <li>
-            <router-link to="/aboutus">ABOUT US</router-link>
+            <router-link to="/myproject">WAREHOUSE</router-link>
           </li>
-          <!-- router-link是声明式导航，无法有其他业务逻辑，只能跳转，编程式导航（replace、push）才能有其他业务 -->
           <li>
-            <router-link to="login" v-if="!showUser">SIGN IN</router-link>
+            <router-link to="/community">TEMPLATE</router-link>
           </li>
-          <li class="authorPart" v-if="showUser">
+          <li>
+            <router-link to="/more">MORE</router-link>
+          </li>
+          <li>
+            <router-link to="login" v-show="!userInfo.iconurl">SIGN IN</router-link>
+          </li>
+          <li class="authorPart" v-show="userInfo.iconurl">
             <div class="authorImg" @click="changeshowexit">
-              <img src="../../assets/images/author.jpg" alt="" />
+              <img :src="userInfo.iconurl" alt="" />
             </div>
-            <div class="authorPartItem">
-              <p class="myself" v-show="showexit" @click="showMyself">
+            <div class="authorPartItem" v-show="showAuthorPartItem">
+              <p class="myself" @click="showMyself">
                 我的资料
               </p>
-              <p class="exit" v-show="showexit" @click="exitload">退出</p>
+              <p class="exit" @click="exitload()">退出</p>
             </div>
           </li>
         </ul>
@@ -41,11 +42,38 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   data() {
     return {
-      showUser: false,
+      showAuthorPartItem: false,
+      showexit:false,
     }
+  },
+  computed: {...mapState('User', ['userInfo']), },
+  methods: {
+     // 退出登录
+    async exitload() {
+      this.showAuthorPartItem = !this.showAuthorPartItem;
+      try {
+        await this.$store.dispatch('User/reqLogout')
+        localStorage.removeItem('UserInfo');
+        this.$router.push("/login");
+      } catch (err) {
+        console.log(err.message)
+      }
+    },
+    changeshowexit() {
+      this.showAuthorPartItem = !this.showAuthorPartItem;
+    },
+    showMyself() {
+      //myself data
+      this.showAuthorPartItem = !this.showAuthorPartItem;
+    }
+  },
+  mounted() {
+    //获取用户信息展示
+    this.$store.dispatch('User/reqUserInfo');
   }
 };
 </script>
@@ -122,8 +150,7 @@ export default {
     border-radius: 50%;
     border: 2px solid #fff;
     overflow: hidden;
-
-    div img {
+    img {
       width: 100%;
       height: 100%;
     }

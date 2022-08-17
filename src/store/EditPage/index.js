@@ -3,6 +3,7 @@ import attr from './attr'
 import compose from './compose'
 import contextmenu from './contextmenu'
 import toolbar from './toolbar'
+import { saveTemplate, releaseTemplate } from '@/api'
 
 const state = {
     ...attr.state,
@@ -24,6 +25,9 @@ const state = {
     // 点击画布时是否点中组件，主要用于取消选中组件用。
     // 如果没点中组件，并且在画布空白处弹起鼠标，则取消当前组件的选中状态
     isClickComponent: false,
+    // 发布查看链接
+    publishLink:null
+
 }
 
 const mutations = {
@@ -53,8 +57,9 @@ const mutations = {
         state.curComponentIndex = index
         // console.log(state.curComponent);
     },
-
-
+    setPublishLink(state,status) {
+        state.publishLink=status
+    },
     setShapeStyle({curComponent}, {top, left, width, height, rotate}) {
         if (top) curComponent.style.top = Math.round(top)
         if (left) curComponent.style.left = Math.round(left)
@@ -119,7 +124,30 @@ const mutations = {
     },
 }
 
-const actions = {}
+const actions = {
+    //保存
+    async saveTemplate({ commit }, projectData) {
+        // console.log("保存的参数", projectData);
+        let result = await saveTemplate(projectData);
+        if (result.code == 200 && result.msg == 'success') {
+            console.log(result);
+            return 'ok';
+        } else {
+            return Promise.reject(new Error(result.data))
+        }
+    },
+    // 发布
+     async releaseTemplate({ commit }, projectData) {
+         let result = await releaseTemplate(projectData);
+         if (result.code == 200 && result.msg == 'success') {
+             console.log(result);
+             commit('setPublishLink', result.data)
+             return 'ok';
+         } else {
+             return Promise.reject(new Error(result.data))
+         }
+     }
+}
 
 const getters = {}
 

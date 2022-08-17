@@ -3,7 +3,21 @@
     <div>
         <!-- 上边 -->
         <div class="wrapper">
-            <h1>lowCode</h1>
+            <div class="titleBox">
+                <p class="returnBtn iconfont icon-fanhui" @click="ToMyproject"></p>
+                <div class="templateName" @click="modifyTemplatename" ref="templateName">
+                    {{ curprojectData.templatename ?curprojectData.templatename :`快点命名`}}
+                </div>
+                <div class="saveTime">{{ saveTime }} 保存成功</div>
+                <div class="modifyBox" v-show="showModifyBox">
+                    <label>请输入项目名</label>
+                    <input type="text" v-model="modifyName">
+                    <div class="commitResult">
+                        <p class="sure" @click="sureModify">确定</p>
+                        <p class="cancel" @click="cancelModify">取消</p>
+                    </div>
+                </div>
+            </div>
             <div class="icon">
                 <span class="iconfont icon-chexiao" @click="undo"></span>
                 <span class="iconfont icon-chexiaoyou" @click="redo"></span>
@@ -22,12 +36,12 @@
                     <!-- 生成发布链接 -->
                     <div class="public-release-tip" v-show="showPublicReleaseLink">
                         <div class="tip-head">Public Release Project</div>
-                        <p class="copyLink iconfont icon-fuzhi" v-clipboard:copy="linkContent"
+                        <p class="copyLink iconfont icon-fuzhi" v-clipboard:copy="publishLink"
                             v-clipboard:success="onCopy" v-clipboard:error="onError">
                             点此复制代码
                         </p>
                         <p class="linkdata" ref="linkdata">
-                            {{ linkContent }}}
+                            {{ publishLink }}}
                         </p>
                     </div>
                 </div>
@@ -38,8 +52,8 @@
                 <i class="el-icon-s-opportunity inDistance"></i>
                 <i class="el-icon-s-claim inDistance"></i>
             </div>
-            <div style="width: 40px">
-                <el-avatar> user</el-avatar>
+            <div style="width: 40px" class="headPortrait">
+                <img :src="headPortrait" alt="">
             </div>
         </div>
         <!-- 预览 -->
@@ -52,6 +66,8 @@ import { mapState } from 'vuex'
 import Preview from '@/components/Editor/Preview'
 import eventBus from '@/utils/eventBus'
 import { divide, multiply } from 'mathjs'
+import toast from '@/utils/toast'
+import { deepCopy } from '@/utils/utils'
 
 export default {
     components: { Preview },
@@ -64,33 +80,75 @@ export default {
             isScreenshot: false,
             showPublicReleaseLink: false,
             linkContent: 'http://localhost:8080/editpage',
+            modifyName: '',
+            showModifyBox: false,
+            saveTime: '',
+            headPortrait: JSON.parse(localStorage.getItem("UserInfo")).iconurl
         }
     },
-    computed: mapState('EditPage', [
-        'componentData',
-        'canvasStyleData',
-        'areaData',
-        'curComponent',
-        'curComponentIndex',
-    ]),
+    computed: {
+        ...mapState('EditPage', [
+            'componentData',
+            'canvasStyleData',
+            'areaData',
+            'curComponent',
+            'curComponentIndex',
+            'publishLink'
+        ]),
+        ...mapState('MyProject', ['curprojectData']),
+    },
     created() {
         eventBus.$on('preview', this.preview)
         eventBus.$on('save', this.save)
         eventBus.$on('clearCanvas', this.clearCanvas)
         this.scale = this.canvasStyleData.scale
+        console.log("好运来", this.curprojectData);
+        //解决vue刷新数据消失的问题
+        //方法1: 通过监听beforeunload事件来进行数据的localStorage存储，beforeunload事件在页面刷新时进行触发
+       /*  if (localStorage.getItem("CurprojectData")) {
+            this.$store.replaceState(Object.assign({}, this.$store.state.MyProject, JSON.parse(localStorage.getItem("CurprojectData"))))
+        }
+
+        window.addEventListener("beforeunload", () => {
+            window.localStorage.setItem("CurprojectData", JSON.stringify(this.$store.state.MyProject))
+        }) */
+    },
+    mounted() {
+        //方法2:重新发请求
+        const pageTemplateid = window.location.href.split("?templateid=")[1];
+        this.$store.dispatch('MyProject/updateProject', pageTemplateid)
+        this.getTime();
     },
 
     methods: {
+        //获取当前时间
+        getTime() {
+            let date = new Date();
+            let time = `${("0" + date.getHours()).slice(-2)}:${("0" + date.getMinutes()).slice(-2)}`;
+            this.saveTime = time;
+        },
         // 发布
-        PublicRelease() {
+        async PublicRelease() {
             // 1.发布前得先保存，否则提示
             // 2.询问是否确认发布，是的话发送请求并生成链接可以复制
             alert("是否确定发布？");
-            console.log("获得componentdata");
-            console.log(this.componentData);
             //请求数据
-            let Totaldata = JSON.stringify(this.componentData);
-            console.log(Totaldata);
+            let { openid, templateid } = this.curprojectData;
+            let templatedata = JSON.stringify(deepCopy(this.componentData));
+            let templatename = this.$refs.templateName.innerHTML;
+            try {
+                await this.$store.dispatch('EditPage/releaseTemplate', {
+                    openid,
+                    templateid,
+                    templatename,
+                    templatedata,
+                })
+                this.$message.success('保存成功');
+            } catch (err) {
+                toast(err.message);
+            }
+
+
             this.showPublicReleaseLink = true;
             this.$message.success('发布成功');
         },
@@ -118,19 +176,47 @@ export default {
             this.$store.commit('EditPage/setEditMode', 'preview')
         },
 
-        save() {
+        async save() {
+            console.log('牛奶', this.componentData);
+            this.getTime();
+            this.modifyName = '';
             localStorage.setItem('canvasData', JSON.stringify(this.componentData))
             localStorage.setItem('canvasStyle', JSON.stringify(this.canvasStyleData))
             // 1.保存这里要发一次请求，让后台保存数据
-            // 转成字符串
-            // let Totaldata = JSON.stringify(this.componentData);
-            // 2.
-            this.$message.success('保存成功');
+            let { openid, templateid } = this.curprojectData;
+            let templatedata = JSON.stringify(deepCopy(this.componentData));
+            let templatename = this.$refs.templateName.innerHTML;
+            try {
+                await this.$store.dispatch('EditPage/saveTemplate', {
+                    openid,
+                    templateid,
+                    templatename,
+                    templatedata,
+                })
+                this.$message.success('保存成功');
+            } catch (err) {
+                toast(err.message);
+            }
         },
-
+        // 修改模板名
+        modifyTemplatename() {
+            this.showModifyBox = !this.showModifyBox;
+            console.log("啦啦啦",this.$refs.templateName.innerHTML);
+        },
+        sureModify() {
+            console.log("修改", this.modifyName);
+            this.$refs.templateName.innerHTML = this.modifyName;
+            this.showModifyBox = !this.showModifyBox;
+        },
+        cancelModify() {
+            this.showModifyBox = !this.showModifyBox;
+        },
         handlePreviewChange() {
             this.$store.commit('EditPage/setEditMode', 'edit')
         },
+        ToMyproject() {
+            this.$router.push('/myProject')
+        }
     },
 }
 </script>
@@ -147,11 +233,75 @@ export default {
     padding: 0 15px;
     border-bottom: 1px solid #ccc;
 
-    h1 {
+    .titleBox {
+        display: flex;
+        position: relative;
+        align-items: center;
         font-size: 25px;
         position: relative;
         flex: 2;
-        color: black
+        color: black;
+        p{
+            width: 52px;
+            &::before{
+                font-size: 34px;
+                font-weight: bold;
+                color: #5176ab;
+            }
+        }
+        .templateName{
+            max-width: 150px;
+            padding:5px 10px;
+            margin-right:15px;
+            font-size: 25px;
+            cursor: pointer;
+        }
+        .saveTime{
+            margin-top: 15px;
+            font-size: 13px;
+            color:#4e5156;
+        }
+        .modifyBox{
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 200px;
+            height: 118px;
+            padding: 16px 20px;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+            z-index: 3;
+            label{
+                font-size: 14px;
+            }
+            input{
+                height: 25px;
+                border: 1.5px solid #ccc;
+                border-radius: 4px;
+                padding: 2px 7px;
+                font-size: 14px;
+            }
+            .commitResult{
+                display: flex;
+                justify-content: space-around;
+                p{
+                    width: 45px;
+                    height: 25px;
+                    color: #fff;
+                    text-align: center;
+                    letter-spacing: 2px;
+                    line-height: 25px;
+                    background: #5176ab;
+                    border-radius: 5px;
+                    cursor: pointer;
+                }
+            }
+        }
+
     }
 
     h1:after,
@@ -225,6 +375,9 @@ export default {
                     border-radius: 5px;
                     padding-left: 15px;
                     color: rgba(0, 0, 0, .7);
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
                 }
             }
         }
@@ -266,6 +419,17 @@ export default {
             margin-left: 20px;
         }
 
+    }
+    .headPortrait{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 2px solid #5176ab;
+        overflow: hidden;
+        img{
+            width: 100%;
+            height: 100%;
+        }
     }
 
 }

@@ -1,4 +1,4 @@
-import { reqFormWork} from '@/api'
+import { reqFormWork } from '@/api'
 const state = {
   // 取色盘颜色
   color: '#9ce5f4',

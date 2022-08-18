@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/editPage',
     name: 'editPage',
-    component: () => import('../views/EditPage')
+    component: () => import('../views/EditPage'),
   },
   {
     path: '/home',

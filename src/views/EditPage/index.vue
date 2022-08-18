@@ -65,19 +65,17 @@ export default {
         'editor',
     ]),
     created() {
-        this.restore()
+        this.restore();
         // 全局监听按键事件
         listenGlobalKeyDown()
-        // console.log("我真棒");
-        // console.log(this.$store.state);
     },
     mounted() {
-        
     },
     methods: {
         restore() {
             // 用保存的数据恢复画布
             if (localStorage.getItem('canvasData')) {
+                console.log("我还在")
                 this.$store.commit('EditPage/setComponentData', this.resetID(JSON.parse(localStorage.getItem('canvasData'))))
             }
 

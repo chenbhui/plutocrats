@@ -143,9 +143,10 @@ export default {
     clearLocalCanvasData() {
       console.log("我们真棒");
       localStorage.removeItem('canvasData');
-      localStorage.removeItem('canvasStyle');
-      this.$router.push('/editPage');
+      localStorage.setItem('canvasStyle',JSON.stringify({ "width": 1200, "height": 740, "scale": 100, "background": "#fff" }));
       this.$store.commit('MyProject/setCurprojectData', '');
+      this.$store.commit('EditPage/setComponentData');
+      this.$router.push('/editPage');
     }
   },
   mounted() {

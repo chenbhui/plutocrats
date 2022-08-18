@@ -42,8 +42,6 @@ const actions = {
       commit('setCurprojectData', result.data)
       localStorage.setItem("canvasData", JSON.stringify(templatedata.canvasData));
       localStorage.setItem("canvasStyle", JSON.stringify(templatedata.canvasStyle));
-      //方法一：解决编辑页一刷新就丢数据的问题
-      // localStorage.setItem("CurprojectData", JSON.stringify(result.data));
       return 'ok'
     }
   },

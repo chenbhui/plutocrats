@@ -102,21 +102,14 @@ export default {
         eventBus.$on('save', this.save)
         eventBus.$on('clearCanvas', this.clearCanvas)
         this.scale = this.canvasStyleData.scale
-        console.log("好运来", this.curprojectData);
-        //解决vue刷新数据消失的问题
-        //方法1: 通过监听beforeunload事件来进行数据的localStorage存储，beforeunload事件在页面刷新时进行触发
-       /*  if (localStorage.getItem("CurprojectData")) {
-            this.$store.replaceState(Object.assign({}, this.$store.state.MyProject, JSON.parse(localStorage.getItem("CurprojectData"))))
-        }
-
-        window.addEventListener("beforeunload", () => {
-            window.localStorage.setItem("CurprojectData", JSON.stringify(this.$store.state.MyProject))
-        }) */
+        // console.log("好运来", this.curprojectData);
     },
     mounted() {
         //方法2:重新发请求
         const pageTemplateid = window.location.href.split("?templateid=")[1];
-        this.$store.dispatch('MyProject/updateProject', pageTemplateid)
+        if (pageTemplateid!="undefined") {
+            this.$store.dispatch('MyProject/updateProject', pageTemplateid);
+        }
         this.getTime();
     },
 

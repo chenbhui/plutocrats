@@ -95,6 +95,7 @@ const mutations = {
     },
 
     setComponentData(state, componentData = []) {
+        console.log("我饿了", componentData)
         Vue.set(state, 'componentData', componentData)
     },
 

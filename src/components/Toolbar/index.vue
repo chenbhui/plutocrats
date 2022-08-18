@@ -53,7 +53,7 @@
                 <i class="el-icon-s-claim inDistance"></i>
             </div>
             <div style="width: 40px" class="headPortrait">
-                <img :src="headPortrait" alt="">
+                <img :src="headPortrait" alt="" @click="ToMyproject">
             </div>
         </div>
         <!-- 预览 -->

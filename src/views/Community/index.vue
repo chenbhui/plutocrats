@@ -49,7 +49,7 @@
       <div class="formWork">
         <ul>
           <li v-for="(item,index) in formWorkList" :key="item.templateid">
-            <a class="formImg" @click="addBrowse(index)">
+            <a class="formImg" @click="clickTemplate(index)">
               <img :src="item.templateimg" alt="" />
             </a>
             <div class="information">
@@ -74,7 +74,7 @@
 </template>
 
 <script>
-import { mapState, mapActions,mapMutations } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   computed: {
@@ -82,9 +82,30 @@ export default {
   },
   methods: {
     // 借助mapMutations生成对应的方法，方法中会调用commit去联系mutations(对象写法)
-    ...mapMutations('Community', { addBrowse: 'ADDBROWSES'}),
+    // ...mapMutations('Community', { addBrowse: 'ADDBROWSES'}),
     // 借助mapActions生成对应的方法，方法中会调用dispatch去联系actions(对象写法)
     ...mapActions('Community', { changeColor: 'changeColor', changeLikes: 'changeLikes' }),
+    clickTemplate(index) {
+      this.$store.commit('Community/ADDBROWSES', index)
+      // 获取模板信息
+      const clickTemplateData = this.formWorkList[index];
+      console.log(clickTemplateData);
+      // 修改模板信息中的templateid属性为null，让其进行后续编辑时重新传入新的templateid后保存或发布
+      const copyTemplateData = clickTemplateData;
+      copyTemplateData.templateid = null;
+      copyTemplateData.id = null;
+      copyTemplateData.openid = null;
+      console.log(copyTemplateData);
+      // Myproject中逻辑复用
+      const templatedata = JSON.parse(copyTemplateData.templatedata);
+      console.log(templatedata);
+      //改变当前模板信息
+      this.$store.commit('MyProject/setCurprojectData', copyTemplateData)
+      localStorage.setItem("canvasData", JSON.stringify(templatedata.canvasData));
+      localStorage.setItem("canvasStyle", JSON.stringify(templatedata.canvasStyle));
+      // 跳转到编辑页
+      this.$router.push('/editPage')
+    }
   },
   mounted() {
     // 获取模板信息在首页展示

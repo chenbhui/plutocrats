@@ -2,19 +2,19 @@
     <!-- banner -->
     <div class="container">
         <div class="banner">
-            <div class="summer">
+            <div class="summer" ref="top">
                 <div class="summer-show">
                     <div class="summer-show-img">
                         <img src="@/assets/images/home.jpg" alt="">
                     </div>
                     <div class="summer-show-text">
-                        <h3>love and expectation</h3>
-                        <h3>are ahead</h3>
+                        <h3>ShortCut design platform</h3>
+                        <h3>zero code</h3>
                         <p class="essey">
-                            No matter how dark the moment is, love and expectation are always
-                            ahead. The world is very simple, so is life.
+                            Zero code design platform, random splicing, adjustment of appearance, easy drag and drop,
+                            everyone can quickly create your own static web page.
                         </p>
-                        <div class="btnOPEN">SLIDE DOWN</div>
+                        <div class="btnOPEN" @click="slideDown()">SLIDE DOWN</div>
                     </div>
                 </div>
             </div>
@@ -26,13 +26,13 @@
             <div class="psy-service">
                 <div class="service-show">
                     <div class="service-show-text">
-                        <h3>psychological service</h3>
+                        <h3>ShortCut platform service</h3>
                         <h3>are ahead</h3>
                         <p class="essey">
-                            We help the person who needs help to resolve their inner emotions.
-                            Speak out your troubles in the form of a barometer.
+                            We provide a personal warehouse page, you can enter the historical template design at will,
+                            and there is a template page.
                         </p>
-                        <div class="btnOPEN">Read more</div>
+                        <div class="btnOPEN" @click="BeginCreate()">Begin create</div>
                     </div>
                     <div class="service-show-img">
                         <img src="@/assets/images/home.jpg" alt="">
@@ -48,11 +48,10 @@
                             <img src="@/assets/images/homeleft.jpg" alt="">
                         </div>
                         <div class="knowledgev-show-text">
-                            <h4>Auto-schedule your books</h4>
-                            <p>you may defind the number of attempt youer agent</p>
-                            <p>you may defind the number of attempt</p>
-                            <p>you may defind the number of attempt youer agent</p>
-                            <p>you may defind the</p>
+                            <h4>Auto-schedule your Template</h4>
+                            <p>Manage historical design, click to enter the editing page, </p>
+                            <p>and generate new templates and update warehouse files</p>
+                            <p> by dragging and style adjustment</p>
                         </div>
                     </div>
                     <div class="knowledge-show-case">
@@ -61,11 +60,10 @@
                         </div>
                         <div class="knowledge-show-text">
                             <div class="knowledgev-show-text">
-                                <h4>Auto-schedule your News</h4>
-                                <p>you may defind the number of attempt youer agent</p>
-                                <p>you may defind the number of attempt</p>
-                                <p>you may defind the number of attempt youer agent</p>
-                                <p>you may defind the</p>
+                                <h4>Freely apply others' templates</h4>
+                                <p>Enter the template page and click your favorite template </p>
+                                <p>to apply it freely, saving time and completing</p>
+                                <p> the page in a few minutes</p>
                             </div>
                         </div>
                     </div>
@@ -84,11 +82,18 @@ export default {
     methods: {
         slideDown() {
             scrollTo({
-                top: this.$refs.top.scrollHeight + 50,
+                top: this.$refs.top.scrollHeight + 150,
                 left: 0,
                 behavior: "smooth",
             });
         },
+        BeginCreate() {
+            if (localStorage.getItem("UserInfo")) {
+                this.$router.push('/editPage');
+            } else {
+                this.$router.push('/login');
+            }
+        }
     },
 };
 </script>

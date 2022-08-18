@@ -4,7 +4,7 @@
     <div class="wrap header-wrap">
       <div class="title-area">
         <router-link to="/home">
-          <img src="../../assets/images/logo.png" alt="" />
+          <img src="../../assets/images/logo.jpg" alt="" />
         </router-link>
       </div>
       <div class="widget-area">
@@ -96,7 +96,7 @@ export default {
       float: left;
       display: block;
       position: relative;
-      top: -6px;
+      top: 0px;
       width: 250px;
       max-width: 250px;
       height: 100%;
@@ -108,7 +108,6 @@ export default {
 
       img {
         width: 97%;
-        height: 122%;
       }
     }
   }

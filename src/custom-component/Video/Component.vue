@@ -62,7 +62,6 @@ export default {
     position: relative;
     width: 100%;
     overflow: hidden;
-    padding-bottom: 56.25%;
     transform: scale(1);
     video{
         position: absolute;

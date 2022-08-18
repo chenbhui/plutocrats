@@ -1,6 +1,6 @@
 
 <template>
-    <div class="video-box" style="overflow: hidden;">
+    <div class="video-box" style="overflow: hidden;" ref="videoBox">
         <video :src="propValue.url" controls></video>
     </div>
 </template>
@@ -18,6 +18,14 @@ export default {
             default: () => { },
         },
     },
+    watch: {
+        'propValue.flip.vertical': function () {
+            this.mirrorFlip();
+        },
+        'propValue.flip.horizontal': function () {
+            this.mirrorFlip();
+        },
+    },
     data() {
         return {
             width: 0,
@@ -28,6 +36,24 @@ export default {
             isFirst: true,
         }
     },
+    methods: {
+        mirrorFlip() {
+            const { vertical, horizontal } = this.propValue.flip;
+            if (vertical) {
+                if (horizontal) {
+                    this.$refs.videoBox.style.transform = " scale(-1,-1)";
+                } else {
+                    this.$refs.videoBox.style.transform = " scale(-1,1)";
+                }
+            } else {
+                if (horizontal) {
+                    this.$refs.videoBox.style.transform = " scale(1,-1)";
+                } else {
+                    this.$refs.videoBox.style.transform = " scale(1,1)";
+                }
+            }
+        }
+    }
 }
 </script>
 <style lang="less" scoped>
@@ -37,6 +63,7 @@ export default {
     width: 100%;
     overflow: hidden;
     padding-bottom: 56.25%;
+    transform: scale(1);
     video{
         position: absolute;
         width: 100%;

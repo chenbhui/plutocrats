@@ -2,8 +2,8 @@
 <template>
     <div v-if="editMode == 'edit'" class="v-text" @keydown="handleKeydown" @keyup="handleKeyup">
         <!-- tabindex >= 0 使得双击时聚焦该元素 -->
-        <!-- 
-            paste：粘贴 
+        <!--
+            paste：粘贴
         -->
         <div ref="text" :contenteditable="canEdit" :class="{ canEdit }" :tabindex="element.id"
             :style="{ verticalAlign: element.style.verticalAlign }" @dblclick="setEdit" @paste="clearStyle"
@@ -51,7 +51,7 @@ export default {
             //获得文本盒子的高约束shape
             let textHeight = Math.round(this.$refs.text.getBoundingClientRect().height);
             this.$store.commit('EditPage/setShapeStyle', {height:textHeight})
-            
+
         },
 
         handleKeydown(e) {

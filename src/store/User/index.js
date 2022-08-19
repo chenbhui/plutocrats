@@ -53,6 +53,7 @@ const actions = {
         let result = await reqLogout()
         if (result.code == 200) {
             commit("GETUSERINFO", {});
+            localStorage.removeItem("UserInfo")
             return 'ok'
         } else {
             return Promise.reject(new Error('faile'))

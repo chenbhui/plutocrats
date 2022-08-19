@@ -44,6 +44,17 @@ export const reqFormWork = () => requests({
     method: 'post'
 })
 
+// 模板点赞
+export const clickLike = (data) => requests({
+    url: '/like',
+    data,
+    method: 'post',
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    }
+
+})
+
 // 查看项目
 export const updateProject = (templateid) => requests({
     url: `/getone?templateid=${templateid}`,

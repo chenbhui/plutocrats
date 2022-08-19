@@ -1,4 +1,4 @@
-import { reqFormWork } from '@/api'
+import { reqFormWork,clickLike } from '@/api'
 const state = {
   // 取色盘颜色
   color: '#9ce5f4',
@@ -20,11 +20,11 @@ const mutations = {
   },
 
   // 点赞
-  ADDLIKES(state, index) {
-    // console.log(value);
-    console.log('mutations中的ADDLIKES被调用了')
-    state.formWorkList[index].likenum+=1
-  },
+  // ADDLIKES(state, index) {
+  //   // console.log(value);
+  //   console.log('mutations中的ADDLIKES被调用了')
+  //   state.formWorkList[index].likenum+=1
+  // },
 
   // 取消点赞
   SUBLIKES(state, index) {
@@ -58,15 +58,26 @@ const actions = {
   },
 
   // 点赞&取消点赞
-  changeLikes({ commit }, { $event, index }) {
+  async changeLikes({ commit,dispatch }, { $event, index }) {
     console.log('action中的changeLikes被调用了')
-    if ($event.target.className==='iconfont icon-xiai') {
+    if ($event.target.className === 'iconfont icon-xiai') {
       $event.target.className = 'iconfont icon-xiai red'
-      commit('ADDLIKES',index)
-    } else {
-      $event.target.className = 'iconfont icon-xiai'
-      commit('SUBLIKES',index)
+      // commit('ADDLIKES',index)
+      let data = {
+        templateid: state.formWorkList[index].templateid
+      }
+      let result = await clickLike(data)
+      console.log(result);
+      if (result.code === 200) {
+        dispatch('getFormWork')
+      }
     }
+    // else {
+      // $event.target.className = 'iconfont icon-xiai'
+      // commit('SUBLIKES',index)
+      // let result = await clickLike(state.formWorkList[index].templateid)
+      // console.log(result);
+    // }
   }
 }
 

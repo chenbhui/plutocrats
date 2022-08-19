@@ -26,7 +26,9 @@ const state = {
     // 如果没点中组件，并且在画布空白处弹起鼠标，则取消当前组件的选中状态
     isClickComponent: false,
     // 发布查看链接
-    publishLink:null
+    publishLink: null,
+    // 源码存储
+    sourceCodeOutput: null,
 
 }
 
@@ -35,7 +37,9 @@ const mutations = {
     ...compose.mutations,
     ...contextmenu.mutations,
     ...toolbar.mutations,
-
+    setSourceCodeOutput(state, status) {
+        state.sourceCodeOutput = status
+    },
     setClickComponentStatus(state, status) {
         state.isClickComponent = status
     },

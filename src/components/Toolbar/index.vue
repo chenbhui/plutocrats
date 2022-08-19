@@ -228,7 +228,7 @@ export default {
   align-items: center;
   padding: 0 15px;
   border-bottom: 1px solid #ccc;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) inset;
+  // box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3) inset;
 
   .titleBox {
     display: flex;

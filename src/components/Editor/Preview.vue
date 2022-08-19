@@ -1,9 +1,9 @@
 <!-- 预览出现的框 -->
 <template>
-    <div v-if="show" ref="container" class="bg">
-        <el-button v-if="!isScreenshot" class="close" @click="close">关闭</el-button>
-        <el-button v-else class="close" @click="htmlToImage">确定</el-button>
-        <div class="canvas-container">
+    <div v-show="show" ref="container" class="bg">
+        <el-button v-if="!isScreenshot" class="close iconfont icon-guanbi" @click="close"></el-button>
+        <el-button v-else class="close iconfont icon-segi-icon-download" @click="htmlToImage"></el-button>
+        <div class="canvas-container" ref="sourceCodeOutput">
             <div class="canvas" :style="{
                 width: changeStyleWithScale(canvasStyleData.width) + 'px',
                 height: changeStyleWithScale(canvasStyleData.height) + 'px',
@@ -41,7 +41,13 @@ export default {
     computed: mapState('EditPage', [
         'componentData',
         'canvasStyleData',
+        'sourceCodeOutput'
     ]),
+    mounted() {
+        console.log("源码");
+        this.$store.commit('EditPage/setSourceCodeOutput', this.$refs.sourceCodeOutput);
+        console.log(this.sourceCodeOutput);
+    },
     methods: {
         changeStyleWithScale,
 
@@ -69,13 +75,21 @@ export default {
 </script>
 
 <style lang="less" scoped>
+
+
+
+
+
+
+
+
 .bg {
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     position: fixed;
-    background: rgb(0, 0, 0, .5);
+    background:#e2f4f7;
     z-index: 10;
     display: flex;
     align-items: center;
@@ -97,8 +111,34 @@ export default {
 
     .close {
         position: absolute;
-        right: 20px;
+        right: 13px;
         top: 20px;
+        background:transparent;
+        border: none;
+        color: #5377ac;
+    }
+    .iconfont::before{
+        font-size: 42px;
+    }
+    .canvas-container::-webkit-scrollbar {
+        /*滚动条整体样式*/
+        width: 0px;
+        /*高宽分别对应横竖滚动条的尺寸*/
+        height: 1px;
+    }
+    
+    .canvas-container::-webkit-scrollbar-thumb {
+        /*滚动条里面小方块*/
+        border-radius: 10px;
+        box-shadow: inset 0 0 5px rgb(0, 0, 0, .2);
+        background: rgb(238, 232, 255);
+    }
+    
+    .canvas-container::-webkit-scrollbar-track {
+        /*滚动条里面轨道*/
+        box-shadow: inset 0 0 5px rgb(238, 232, 255);
+        border-radius: 10px;
+        background: #ededed;
     }
 }
 </style>

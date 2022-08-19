@@ -34,7 +34,7 @@ export default {};
   .footer-publish {
     width: 100%;
     height: 100px;
-    padding-top: 30px;
+    padding-top: 20px;
     text-align: center;
     background: #5176ab;
     .copyright {

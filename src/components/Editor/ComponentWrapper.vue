@@ -23,7 +23,9 @@ export default {
         },
     },
     mounted() {
-        runAnimation(this.$refs.component.$el, this.config.animations)
+        setTimeout(() => {
+            runAnimation(this.$refs.component.$el, this.config.animations)
+        },100)
     },
     methods: {
         getStyle,

@@ -256,6 +256,7 @@ export default {
 
 <style lang="less" scoped>
 
+
 .editTool {
     position: absolute;
     width: 100%;
@@ -265,6 +266,7 @@ export default {
     white-space: nowrap;
     background: #fff;
     border-bottom: 1px solid #ddd;
+    box-shadow: 0px 0px 6px 0px #5176ab;
 
     .canvas-config {
         display: inline-block;

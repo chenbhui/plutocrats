@@ -189,6 +189,7 @@ export default {
             height: 100%;
             overflow: auto;
             padding: 60px 20px 20px;
+            box-shadow: 0 1px 5px rgba(0,0,0,.3) inset;
 
             .content {
                 width: 100%;

@@ -99,6 +99,12 @@ export default {
 </script>
 
 <style lang="less">
+
+
+
+
+
+
 .animation-list {
     .cursor {
         cursor: pointer;
@@ -112,13 +118,37 @@ export default {
         }
 
         .el-tag {
+            position: relative;
             display: block;
-            width: 50%;
+            width: 71%;
+            height: 33px;
+            line-height: 33px;
             margin: auto;
             margin-bottom: 10px;
+            text-align: center;
+            i{
+                position:absolute;
+                font-size: 20px;
+            }
+            .el-icon-setting{
+                top:5px;
+                left:4px;
+            }
+            .el-icon-close{
+                top: 7px;
+                right: 8px;
+                &:hover{
+                    top: 7px;
+                    right: 5px;
+                    width: 20px;
+                    height: 20px;
+                }
+                &::before{
+                    padding-top: 1px;
+                }
+            }
         }
     }
-
     .el-scrollbar__view {
         display: flex;
         align-items: center;

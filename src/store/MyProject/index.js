@@ -39,7 +39,7 @@ const actions = {
       const allData = result.data
       console.log(allData);
       const saveData = allData.filter((item) => {
-        return item.publish_sign == 0
+        return item.publishsign == 0
       })
       console.log(saveData);
       commit('setUserProjectData', saveData)

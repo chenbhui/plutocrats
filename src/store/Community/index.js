@@ -4,6 +4,8 @@ const state = {
   color: '#9ce5f4',
   // 模板中的信息列表
   formWorkList: [],
+  // 赞的颜色
+  colorList:[]
 }
 
 const mutations = {
@@ -25,6 +27,8 @@ const mutations = {
     // console.log(value);
     console.log('mutations中的ADDLIKES被调用了')
     state.formWorkList[index].likenum += 1
+    state.colorList.push(index)
+    console.log(state.colorList);
   },
 
   // 取消点赞

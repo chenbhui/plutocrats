@@ -37,7 +37,8 @@ const actions = {
     if (result.code === 200) {
       console.log(result);
       const templatedata = JSON.parse(result.data.templatedata);
-      console.log(templatedata);
+      const sourceCode = JSON.parse(result.data.sourcecode);
+      console.log("结果sourceCode", sourceCode);
       //改变当前模板信息
       commit('setCurprojectData', result.data)
       localStorage.setItem("canvasData", JSON.stringify(templatedata.canvasData));

@@ -67,7 +67,8 @@ import Preview from '@/components/Editor/Preview'
 import eventBus from '@/utils/eventBus'
 import {divide, multiply} from 'mathjs'
 import toast from '@/utils/toast'
-import {deepCopy} from '@/utils/utils'
+import { deepCopy } from '@/utils/utils'
+import nodeToString from '@/utils/nodeToString'
 
 export default {
   components: {Preview},
@@ -93,7 +94,9 @@ export default {
       'areaData',
       'curComponent',
       'curComponentIndex',
-      'publishLink'
+      'publishLink',
+      'sourceCodeOutput'
+
     ]),
     ...mapState('MyProject', ['curprojectData']),
   },
@@ -131,12 +134,14 @@ export default {
         "canvasStyle": deepCopy(this.canvasStyleData),
       });
       let templatename = this.$refs.templateName.innerHTML;
+      let sourcecode = JSON.stringify("源码" + nodeToString(this.sourceCodeOutput));
       try {
         await this.$store.dispatch('EditPage/releaseTemplate', {
           openid,
           templateid,
           templatename,
           templatedata,
+          sourcecode,
         })
         this.$message.success('发布成功');
         this.showPublicReleaseLink = true;
@@ -173,20 +178,20 @@ export default {
       this.modifyName = '';
       localStorage.setItem('canvasData', JSON.stringify(this.componentData))
       localStorage.setItem('canvasStyle', JSON.stringify(this.canvasStyleData))
-      // 1.保存这里要发一次请求，让后台保存数据
       let {openid, templateid} = this.curprojectData;
-      // let templatedata = JSON.stringify(deepCopy(this.componentData));
       let templatedata = JSON.stringify({
         "canvasData": deepCopy(this.componentData),
         "canvasStyle": deepCopy(this.canvasStyleData),
       });
       let templatename = this.$refs.templateName.innerHTML;
+      let sourcecode = JSON.stringify("源码" + nodeToString(this.sourceCodeOutput));
       try {
         await this.$store.dispatch('EditPage/saveTemplate', {
           openid,
           templateid,
           templatename,
           templatedata,
+          sourcecode,
         })
         this.$message.success('保存成功');
       } catch (err) {

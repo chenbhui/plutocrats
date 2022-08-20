@@ -44,9 +44,7 @@ export default {
         'sourceCodeOutput'
     ]),
     mounted() {
-        console.log("源码");
         this.$store.commit('EditPage/setSourceCodeOutput', this.$refs.sourceCodeOutput);
-        console.log(this.sourceCodeOutput);
     },
     methods: {
         changeStyleWithScale,

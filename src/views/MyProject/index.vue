@@ -112,10 +112,11 @@
 <script>
 import { mapState } from 'vuex'
 import toast from '@/utils/toast'
+import generateJsonFile from '@/utils/generateJsonFile'
 export default {
   name: 'myProject',
   computed: {
-    ...mapState('MyProject', ['projectList']),
+    ...mapState('MyProject', ['projectList','curprojectData']),
   },
   methods: {
     // 编辑项目
@@ -129,8 +130,17 @@ export default {
     },
 
     // 源码
-    sourceCode(templateid) {
+    async sourceCode(templateid) {
       console.log('sourceCode', templateid)
+      // 1.发请求拿到源码然后转成json文件
+      try {
+        await this.$store.dispatch('MyProject/updateProject', templateid);
+        console.log("吃完了", this.curprojectData);
+        generateJsonFile(JSON.parse(this.curprojectData.sourcecode));
+      } catch (err) {
+        console.log(err.message)
+      }
+      
     },
     // 删除项目
     async deleteProject(templateid) {

@@ -36,7 +36,13 @@ const actions = {
     console.log('action中的 getByopenid被调用了')
     let result = await getByopenid(openid)
     if (result.code == 200) {
-      commit('setUserProjectData', result.data)
+      const allData = result.data
+      console.log(allData);
+      const saveData = allData.filter((item) => {
+        return item.publish_sign == 0
+      })
+      console.log(saveData);
+      commit('setUserProjectData', saveData)
       console.log("获取该用户的项目列表信息",result.data);
     }
   },

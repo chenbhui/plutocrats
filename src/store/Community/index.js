@@ -28,16 +28,16 @@ const mutations = {
   },
 
   // 取消点赞
-  SUBLIKES(state, index) {
-    console.log('mutations中的SUBLIKES被调用了')
-    state.formWorkList[index].likenum -= 1
-  },
+  // SUBLIKES(state, index) {
+  //   console.log('mutations中的SUBLIKES被调用了')
+  //   state.formWorkList[index].likenum -= 1
+  // },
 
   // 点击浏览量增加
-  ADDBROWSES(state, index) {
-    console.log('mutations中的ADDBROWSES被调用了')
-    state.formWorkList[index].publish_sign += 1
-  },
+  // ADDBROWSES(state, index) {
+  //   console.log('mutations中的ADDBROWSES被调用了')
+  //   state.formWorkList[index].publish_sign += 1
+  // },
 }
 
 const actions = {
@@ -59,23 +59,23 @@ const actions = {
   },
 
   // 点赞&取消点赞
-  async changeLikes({ commit, dispatch }, { $event, index }) {
+  async changeLikes({ commit }, { $event, index }) {
     console.log('action中的changeLikes被调用了')
     if ($event.target.className === 'iconfont icon-xiai') {
       $event.target.className = 'iconfont icon-xiai red'
-      commit('ADDLIKES', index)
       let data = {
         templateid: state.formWorkList[index].templateid,
       }
-
-      let result = await clickLike(data)
-      if (result.code === 200) {
-        return 'ok'
-      }
-    } else {
-      $event.target.className = 'iconfont icon-xiai'
-      commit('SUBLIKES', index)
-    }
+      await clickLike(data)
+      commit('ADDLIKES', index)
+      // if (result.code === 200) {
+      //   return 'ok'
+      // }
+      // }
+      // else {
+    //   $event.target.className = 'iconfont icon-xiai'
+    //   commit('SUBLIKES', index)
+     }
   },
 }
 

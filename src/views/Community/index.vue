@@ -63,7 +63,7 @@
                 <a @click="changeLikes({ $event, index })"><span class="iconfont icon-xiai"></span></a>
                 {{ item.likenum }}
                 <span class="iconfont icon-yanjing"></span>
-                {{ item.publish_sign }}
+                99
               </div>
             </div>
           </li>
@@ -75,7 +75,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
-import { updateProject } from '@/api'
+import {updateProject } from '@/api'
 
 export default {
   computed: {
@@ -87,10 +87,10 @@ export default {
     // 借助mapActions生成对应的方法，方法中会调用dispatch去联系actions(对象写法)
     ...mapActions('Community', { changeColor: 'changeColor', changeLikes: 'changeLikes' }),
     async clickTemplate(index,templateid) {
-      this.$store.commit('Community/ADDBROWSES', index)
+      // this.$store.commit('Community/ADDBROWSES', index)
       // 获取模板信息
       const result=await updateProject(templateid)
-      const clickTemplateData = result.data
+      const clickTemplateData = result.data;
       console.log(clickTemplateData);
       // 修改模板信息中的templateid属性为null，让其进行后续编辑时重新传入新的templateid后保存或发布
       const copyTemplateData = clickTemplateData;

@@ -1,21 +1,23 @@
-import { reqFormWork,updateProject,deleteProject} from '@/api'
+import { reqFormWork, updateProject, deleteProject, getByopenid } from '@/api'
 const state = {
   // 模板中的信息列表
   projectList: [],
   //当前模板信息
-  curprojectData:[],
+  curprojectData: [],
+  // 该用户模板信息
+  userProjectData:[],
 }
 
 const mutations = {
   // 项目列表赋值
   GETPROJECT(state, projectList) {
-    // console.log('mutations中的GETPROJECT被调用了')
     state.projectList = projectList
   },
   setCurprojectData(state, curprojectData) {
-    console.log('mutations中的setCurprojectData被调用了')
     state.curprojectData = curprojectData;
-    console.log(state.curprojectData);
+  },
+  setUserProjectData(state, userProjectData) {
+    state.userProjectData = userProjectData;
   }
 }
 
@@ -29,6 +31,16 @@ const actions = {
       commit('GETPROJECT', result.data)
     }
   },
+  //获取该用户的项目列表信息
+  async getByopenid({ commit }, openid) {
+    console.log('action中的 getByopenid被调用了')
+    let result = await getByopenid(openid)
+    if (result.code == 200) {
+      commit('setUserProjectData', result.data)
+      console.log("获取该用户的项目列表信息",result.data);
+    }
+  },
+
 
   // 编辑项目
   async updateProject({ commit }, templateid) {

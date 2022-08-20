@@ -38,10 +38,15 @@ export const reqLogout = () => requests({
     method: 'get'
 })
 
-// 模板列表
+// 所有模板列表
 export const reqFormWork = () => requests({
     url: '/getall',
     method: 'post'
+})
+// 某用户模板列表
+export const getByopenid = (data) => requests({
+    url: `/getByopenid?openid=${data}`,
+    method: 'post',
 })
 
 // 模板点赞

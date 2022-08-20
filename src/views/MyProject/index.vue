@@ -78,7 +78,7 @@
         </div>
         <!-- 项目列表 -->
         <ul class="projectList">
-          <li class="work" v-for="item in projectList" :key="item.templateid">
+          <li class="work" v-for="item in userProjectData" :key="item.templateid">
             <p>{{ item.templatename }}</p>
             <ul class="operate">
               <li>
@@ -94,7 +94,7 @@
                 </a>
               </li>
               <li>
-                <a @click="deleteProject(item.templateid)" style="cursor: pointer">
+                <a @click="deleteProject(item.templateid)" style="cursor: pointer" >
                   <span class="iconfont icon-shanchu"></span>
                   删除
                 </a>
@@ -116,7 +116,7 @@ import generateJsonFile from '@/utils/generateJsonFile'
 export default {
   name: 'myProject',
   computed: {
-    ...mapState('MyProject', ['projectList','curprojectData']),
+    ...mapState('MyProject', ['curprojectData','userProjectData']),
   },
   methods: {
     // 编辑项目
@@ -132,10 +132,9 @@ export default {
     // 源码
     async sourceCode(templateid) {
       console.log('sourceCode', templateid)
-      // 1.发请求拿到源码然后转成json文件
       try {
         await this.$store.dispatch('MyProject/updateProject', templateid);
-        console.log("吃完了", this.curprojectData);
+        // 生成json文件
         generateJsonFile(JSON.parse(this.curprojectData.sourcecode));
       } catch (err) {
         console.log(err.message)
@@ -146,7 +145,8 @@ export default {
     async deleteProject(templateid) {
       try {
         await this.$store.dispatch('MyProject/deleteProject', templateid)
-        this.$store.dispatch('MyProject/getProject')
+        this.$store.dispatch('MyProject/getByopenid');
+
       } catch (error) {
         toast('请登录！')
       }
@@ -162,8 +162,9 @@ export default {
     }
   },
   mounted() {
-    // 获取模板信息在首页展示
-    this.$store.dispatch('MyProject/getProject');
+    let userId = JSON.parse(localStorage.getItem('UserInfo')).openid;
+    // 获取该用户的模板信息在首页显示
+    this.$store.dispatch('MyProject/getByopenid', userId);
   },
 }
 </script>

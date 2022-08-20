@@ -11,6 +11,7 @@ const mutations = {
   GETFORMWORK(state, formWorkList) {
     console.log('mutations中的GETFORMWORK被调用了')
     state.formWorkList = formWorkList
+    console.log("formWorkList", formWorkList)
   },
 
   // 改变颜色
@@ -66,8 +67,8 @@ const actions = {
       let data = {
         templateid: state.formWorkList[index].templateid
       }
+      
       let result = await clickLike(data)
-      console.log(result);
       if (result.code === 200) {
         dispatch('getFormWork')
       }

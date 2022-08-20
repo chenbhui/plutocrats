@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 
-
 Vue.use(VueRouter)
 
 const routes = [
@@ -61,12 +60,12 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
 
     let token = JSON.parse(localStorage.getItem("UserInfo"))
-
+    console.log(token)
     console.log(to.path)
 
     if (to.path === '/myproject' || to.path === '/community') {
         if (!token) {
-           alert('您没有访问权限，请登录后访问')
+            alert('您没有访问权限，请登录后访问')
             next({
                 path: '/login'
             })
@@ -78,5 +77,6 @@ router.beforeEach((to, from, next) => {
     }
 
 })
+
 
 export default router

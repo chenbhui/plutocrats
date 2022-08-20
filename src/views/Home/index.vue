@@ -92,7 +92,13 @@ export default {
     data() {
         return {};
     },
-    methods: {
+    mounted() {
+      window.onbeforeunload = function (e){
+        let storage = window.localStorage
+        storage.clear()
+      }
+    },
+  methods: {
         slideDown() {
             scrollTo({
                 top: this.$refs.top.scrollHeight + 50,
@@ -113,12 +119,15 @@ export default {
 
 <style lang="less" scoped>
 .container {
+
+
     background-color: rgb(226, 244, 247);
     padding-bottom: 50px;
 
     .top-page {
+        position: relative;
         height: calc(100vh - 50px);
-
+         min-height:700px;
         .top-container {
             width: 1345px;
             margin: 0 auto;

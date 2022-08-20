@@ -2,7 +2,7 @@
   <div id="app">
     <!-- 根据路由元中show 判断是否挂载头部和底部 -->
     <Header v-show="$route.meta.show"></Header>
-    <router-view />
+    <router-view v-if="isRouterAlive"/>
     <Footer v-show="$route.meta.show"></Footer>
   </div>
 </template>
@@ -15,12 +15,26 @@ export default {
   data() {
     return {
       msg: "",
+      isRouterAlive: true
     };
+  },
+  provide() {
+    return {
+      reload:this.reload
+    }
   },
   components: {
     Header,
     Footer,
   },
+  methods: {
+    reload() {
+      this.isRouterAlive = false
+      this.$nextTick(() => {
+        this.isRouterAlive=true
+      })
+    },
+  }
 };
 </script>
 

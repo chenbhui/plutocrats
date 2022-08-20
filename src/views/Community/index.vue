@@ -49,7 +49,7 @@
       <div class="formWork">
         <ul>
           <li v-for="(item,index) in formWorkList" :key="item.templateid">
-            <a class="formImg" @click="clickTemplate(index)">
+            <a class="formImg" @click="clickTemplate(index,item.templateid)">
               <img :src="item.templateimg" alt="" />
             </a>
             <div class="information">
@@ -75,6 +75,7 @@
 
 <script>
 import { mapState, mapActions } from 'vuex'
+import { updateProject } from '@/api'
 
 export default {
   computed: {
@@ -85,10 +86,11 @@ export default {
     // ...mapMutations('Community', { addBrowse: 'ADDBROWSES'}),
     // 借助mapActions生成对应的方法，方法中会调用dispatch去联系actions(对象写法)
     ...mapActions('Community', { changeColor: 'changeColor', changeLikes: 'changeLikes' }),
-    clickTemplate(index) {
+    async clickTemplate(index,templateid) {
       this.$store.commit('Community/ADDBROWSES', index)
       // 获取模板信息
-      const clickTemplateData = this.formWorkList[index];
+      const result=await updateProject(templateid)
+      const clickTemplateData = result.data
       console.log(clickTemplateData);
       // 修改模板信息中的templateid属性为null，让其进行后续编辑时重新传入新的templateid后保存或发布
       const copyTemplateData = clickTemplateData;

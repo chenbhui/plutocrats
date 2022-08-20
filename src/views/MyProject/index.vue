@@ -114,6 +114,7 @@ import { mapState } from 'vuex'
 import toast from '@/utils/toast'
 import generateJsonFile from '@/utils/generateJsonFile'
 export default {
+  inject:['reload'],
   name: 'myProject',
   computed: {
     ...mapState('MyProject', ['curprojectData','userProjectData']),
@@ -145,8 +146,8 @@ export default {
     async deleteProject(templateid) {
       try {
         await this.$store.dispatch('MyProject/deleteProject', templateid)
-        this.$store.dispatch('MyProject/getByopenid');
-
+        // this.$store.dispatch('MyProject/getByopenid');
+        this.reload()
       } catch (error) {
         toast('请登录！')
       }

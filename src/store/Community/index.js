@@ -1,4 +1,4 @@
-import { reqFormWork,clickLike } from '@/api'
+import { reqFormWork, clickLike } from '@/api'
 const state = {
   // 取色盘颜色
   color: '#9ce5f4',
@@ -11,7 +11,7 @@ const mutations = {
   GETFORMWORK(state, formWorkList) {
     console.log('mutations中的GETFORMWORK被调用了')
     state.formWorkList = formWorkList
-    console.log("formWorkList", formWorkList)
+    console.log('formWorkList', formWorkList)
   },
 
   // 改变颜色
@@ -21,23 +21,23 @@ const mutations = {
   },
 
   // 点赞
-  // ADDLIKES(state, index) {
-  //   // console.log(value);
-  //   console.log('mutations中的ADDLIKES被调用了')
-  //   state.formWorkList[index].likenum+=1
-  // },
+  ADDLIKES(state, index) {
+    // console.log(value);
+    console.log('mutations中的ADDLIKES被调用了')
+    state.formWorkList[index].likenum += 1
+  },
 
   // 取消点赞
   SUBLIKES(state, index) {
     console.log('mutations中的SUBLIKES被调用了')
-    state.formWorkList[index].likenum-=1
+    state.formWorkList[index].likenum -= 1
   },
 
   // 点击浏览量增加
   ADDBROWSES(state, index) {
     console.log('mutations中的ADDBROWSES被调用了')
-    state.formWorkList[index].publish_sign+=1
-  },  
+    state.formWorkList[index].publish_sign += 1
+  },
 }
 
 const actions = {
@@ -52,34 +52,31 @@ const actions = {
   },
 
   // 改变颜色
-  changeColor({commit}, e) {
+  changeColor({ commit }, e) {
     console.log('action中的changeColor被调用了')
     var txtColor = e.target.value
     commit('CHANGECOLOR', txtColor)
   },
 
   // 点赞&取消点赞
-  async changeLikes({ commit,dispatch }, { $event, index }) {
+  async changeLikes({ commit, dispatch }, { $event, index }) {
     console.log('action中的changeLikes被调用了')
     if ($event.target.className === 'iconfont icon-xiai') {
       $event.target.className = 'iconfont icon-xiai red'
-      // commit('ADDLIKES',index)
+      commit('ADDLIKES', index)
       let data = {
-        templateid: state.formWorkList[index].templateid
+        templateid: state.formWorkList[index].templateid,
       }
-      
+
       let result = await clickLike(data)
       if (result.code === 200) {
-        dispatch('getFormWork')
+        return 'ok'
       }
+    } else {
+      $event.target.className = 'iconfont icon-xiai'
+      commit('SUBLIKES', index)
     }
-    // else {
-      // $event.target.className = 'iconfont icon-xiai'
-      // commit('SUBLIKES',index)
-      // let result = await clickLike(state.formWorkList[index].templateid)
-      // console.log(result);
-    // }
-  }
+  },
 }
 
 const getters = {}

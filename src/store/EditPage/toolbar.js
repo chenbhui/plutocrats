@@ -44,7 +44,6 @@ export default {
         recordSnapshot(state) {
             // 添加新的快照
             state.snapshotData[++state.snapshotIndex] = deepCopy(state.componentData);
-            // console.log("添加快照：state.snapshotData", state.snapshotData);
             // 在 undo 过程中，添加新的快照时，要将它后面的快照清理掉
             if (state.snapshotIndex < state.snapshotData.length - 1) {
                 state.snapshotData = state.snapshotData.slice(0, state.snapshotIndex + 1)

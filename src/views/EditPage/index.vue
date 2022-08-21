@@ -75,7 +75,6 @@ export default {
         restore() {
             // 用保存的数据恢复画布
             if (localStorage.getItem('canvasData')) {
-                console.log("我还在")
                 this.$store.commit('EditPage/setComponentData', this.resetID(JSON.parse(localStorage.getItem('canvasData'))))
             }
 
@@ -97,7 +96,6 @@ export default {
         /* 触发 drop 事件时，使用 dataTransfer.getData() 接收传输过来的索引数据，
         然后根据索引找到对应的组件数据，再添加到画布，从而渲染组件。 */
         handleDrop(e) {
-            // console.log("拖拽元素放置触发");
             e.preventDefault()
             e.stopPropagation()
             const index = e.dataTransfer.getData('index');
@@ -127,7 +125,6 @@ export default {
         },
 
         handleMouseDown(e) {
-            // console.log("鼠标按下了");
             e.stopPropagation()
             this.$store.commit('EditPage/setClickComponentStatus', false)
             this.$store.commit('EditPage/setInEditorStatus', true)

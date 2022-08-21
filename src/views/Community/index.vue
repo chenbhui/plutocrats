@@ -91,16 +91,13 @@ export default {
       // 获取模板信息
       const result=await updateProject(templateid)
       const clickTemplateData = result.data;
-      console.log(clickTemplateData);
       // 修改模板信息中的templateid属性为null，让其进行后续编辑时重新传入新的templateid后保存或发布
       const copyTemplateData = clickTemplateData;
       copyTemplateData.templateid = null;
       copyTemplateData.id = null;
       copyTemplateData.openid = null;
-      console.log(copyTemplateData);
       // Myproject中逻辑复用
       const templatedata = JSON.parse(copyTemplateData.templatedata);
-      console.log(templatedata);
       //改变当前模板信息
       this.$store.commit('MyProject/setCurprojectData', copyTemplateData)
       localStorage.setItem("canvasData", JSON.stringify(templatedata.canvasData));

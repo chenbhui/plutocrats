@@ -294,21 +294,6 @@ export default {
             return getSVGStyle(style, this.svgFilterAttrs)
         },
 
-       /*  handleInput(element, value) {
-            // 根据文本组件高度调整 shape 高度
-            this.$store.commit('EditPage/setShapeStyle', { height: this.getTextareaHeight(element, value) })
-        },
-
-        getTextareaHeight(element, text) {
-            let { lineHeight, fontSize, height } = element.style;
-            if (lineHeight === '') {
-                lineHeight = 1.5
-            }
-
-            const newHeight = (text.split('<br>').length - 1) * lineHeight * fontSize;
-            console.log("newHeight", newHeight);
-            return height > newHeight ? height : newHeight
-        }, */
     },
 }
 </script>

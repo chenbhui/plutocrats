@@ -74,7 +74,6 @@ export default {
             // 如果重复剪切，需要恢复上一次剪切的数据
             restorePreCutData(state)
             copyData(state)
-            console.log("EditPage/store",store);
 
             store.commit('EditPage/deleteComponent')
             state.isCut = true

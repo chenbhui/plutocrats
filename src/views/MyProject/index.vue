@@ -132,7 +132,6 @@ export default {
 
     // 源码
     async sourceCode(templateid) {
-      console.log('sourceCode', templateid)
       try {
         await this.$store.dispatch('MyProject/updateProject', templateid);
         // 生成json文件
@@ -153,7 +152,6 @@ export default {
     },
     //清除本地的CanvasData（上一次的编辑页面内容）
     clearLocalCanvasData() {
-      console.log("我们真棒");
       localStorage.removeItem('canvasData');
       localStorage.setItem('canvasStyle', JSON.stringify({ "width": 1200, "height": 740, "scale": 100, "background": "#fff" }));
       this.$store.commit('MyProject/setCurprojectData', '');

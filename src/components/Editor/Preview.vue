@@ -56,8 +56,10 @@ export default {
         },
 
         htmlToImage() {
+            console.log("shdfahdhahdj");
             toPng(this.$refs.container.querySelector('.canvas'))
                 .then(dataUrl => {
+                    console.log("dataUrl",dataUrl);
                     const a = document.createElement('a')
                     a.setAttribute('download', 'screenshot')
                     a.href = dataUrl

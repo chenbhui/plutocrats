@@ -1,10 +1,4 @@
 <!-- 左边属性导航菜单-->
-<!-- 
-    一个元素如果要设为可拖拽，必须给它添加一个 draggable 属性。
-    另外，在将组件列表中的组件拖拽到画布中，还有两个事件是起到关键作用的：
-    dragstart 事件，在拖拽刚开始时触发。它主要用于将拖拽的组件信息传递给画布。
-    drop 事件，在拖拽结束时触发。主要用于接收拖拽的组件信息。
- -->
 <template>
     <div class="component-list" @dragstart="handleDragStart">
         <div v-for="(item, index) in componentList" :key="index" class="list" draggable :data-index="index">

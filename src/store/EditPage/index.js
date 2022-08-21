@@ -130,7 +130,6 @@ const actions = {
     async saveTemplate({ commit }, projectData) {
         let result = await saveTemplate(projectData);
         if (result.code == 200 && result.msg == 'success') {
-            console.log(result);
             return 'ok';
         } else {
             return Promise.reject(new Error(result.data))
@@ -140,7 +139,6 @@ const actions = {
      async releaseTemplate({ commit }, projectData) {
          let result = await releaseTemplate(projectData);
          if (result.code == 200 && result.msg == 'success') {
-             console.log(result);
              commit('setPublishLink', result.data)
              return 'ok';
          } else {

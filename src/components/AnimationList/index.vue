@@ -86,7 +86,6 @@ export default {
             if (animate.pending) return
 
             animate.pending = true
-            // console.log("refs", this.$refs[animate.value][0]);
             await runAnimation(this.$refs[animate.value][0], [animate])
 
             // 防止无限触发同一元素的动画

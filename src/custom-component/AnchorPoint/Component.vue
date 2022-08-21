@@ -101,8 +101,6 @@ export default {
     },
 
     handleBlur(e) {
-      // console.log('e')
-      // this.localelement.propValue.value = e.target.innerHTML || '&nbsp;';
       const html = e.target.innerHTML;
       if (html !== '') {
         this.localelement.propValue.value = e.target.innerHTML;

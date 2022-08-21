@@ -101,10 +101,7 @@ export default {
             // 1.发布前得先保存，否则提示
             // 2.询问是否确认发布，是的话发送请求并生成链接可以复制
             alert("是否确定发布？");
-            console.log("获得componentdata");
-            console.log(this.componentData);
             //请求数据
-            // let Totaldata = JSON.stringify(this.componentData);
             this.showPublicReleaseLink = true;
             this.$message.success('发布成功');
         },
@@ -230,16 +227,6 @@ export default {
             this.isShowPreview = true
             this.$store.commit('EditPage/setEditMode', 'preview')
         },
-
-       /*  save() {
-            localStorage.setItem('canvasData', JSON.stringify(this.componentData))
-            localStorage.setItem('canvasStyle', JSON.stringify(this.canvasStyleData))
-            // 1.保存这里要发一次请求，让后台保存数据
-            // 转成字符串
-            // let Totaldata = JSON.stringify(this.componentData);
-            // 2.
-            this.$message.success('保存成功');
-        }, */
 
         clearCanvas() {
             this.$store.commit('EditPage/setCurComponent', { component: null, index: null })

@@ -105,7 +105,6 @@ export default {
     eventBus.$on('save', this.save)
     eventBus.$on('clearCanvas', this.clearCanvas)
     this.scale = this.canvasStyleData.scale
-    // console.log("好运来", this.curprojectData);
   },
   mounted() {
     //方法2:重新发请求
@@ -201,10 +200,8 @@ export default {
     // 修改模板名
     modifyTemplatename() {
       this.showModifyBox = !this.showModifyBox;
-      console.log("啦啦啦", this.$refs.templateName.innerHTML);
     },
     sureModify() {
-      console.log("修改", this.modifyName);
       this.$refs.templateName.innerHTML = this.modifyName;
       this.showModifyBox = !this.showModifyBox;
     },

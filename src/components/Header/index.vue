@@ -50,7 +50,10 @@ export default {
       showexit:false,
     }
   },
-  computed: {...mapState('User', ['userInfo']), },
+  computed: {
+    ...mapState('User', ['userInfo']),
+  },
+  
   methods: {
      // 退出登录
     async exitload() {
@@ -75,7 +78,6 @@ export default {
   mounted() {
     //获取用户信息展示
     this.$store.dispatch('User/reqUserInfo');
-    console.log("this.userInfo",this.userInfo);
   }
 };
 </script>

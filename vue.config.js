@@ -8,7 +8,7 @@ module.exports = defineConfig({
     port:80,
     proxy: {
       '/api': {
-        target: 'http://www.yankeyu.top:8088',
+        target: 'http://www.yankeyu.top:8089',
         pathRewrite: { '^/api': '' },
       }
     }

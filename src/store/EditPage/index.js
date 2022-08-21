@@ -59,7 +59,6 @@ const mutations = {
     setCurComponent(state, { component, index }) {
         state.curComponent = component
         state.curComponentIndex = index
-        // console.log(state.curComponent);
     },
     setPublishLink(state,status) {
         state.publishLink=status
@@ -99,7 +98,6 @@ const mutations = {
     },
 
     setComponentData(state, componentData = []) {
-        console.log("我饿了", componentData)
         Vue.set(state, 'componentData', componentData)
     },
 
@@ -107,9 +105,7 @@ const mutations = {
         if (index !== undefined) {
             state.componentData.splice(index, 0, component)
         } else {
-            // console.log("component进来了");
             state.componentData.push(component)
-            // console.log(state.componentData);
         }
     },
 
@@ -132,7 +128,6 @@ const mutations = {
 const actions = {
     //保存
     async saveTemplate({ commit }, projectData) {
-        // console.log("保存的参数", projectData);
         let result = await saveTemplate(projectData);
         if (result.code == 200 && result.msg == 'success') {
             console.log(result);

@@ -45,6 +45,9 @@ const actions = {
             //提交用户信息
             commit("GETUSERINFO", result.data);
         } else {
+            if (result.code == 500) {
+                console.log('未登录', result);
+           }
             return Promise.reject(new Error(result.data));
         }
     },

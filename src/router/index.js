@@ -61,10 +61,12 @@ router.beforeEach((to, from, next) => {
 
     let token = JSON.parse(localStorage.getItem("UserInfo"))
     console.log(token)
-    console.log(to.path)
+    console.log(to.path);
 
     if (to.path === '/myproject' || to.path === '/community') {
-        if (!token) {
+        console.log("我我哦我");
+        if (token==null) {
+            console.log("你你你");
             alert('您没有访问权限，请登录后访问')
             next({
                 path: '/login'

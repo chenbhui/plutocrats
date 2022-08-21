@@ -75,6 +75,7 @@ export default {
   mounted() {
     //获取用户信息展示
     this.$store.dispatch('User/reqUserInfo');
+    console.log("this.userInfo",this.userInfo);
   }
 };
 </script>

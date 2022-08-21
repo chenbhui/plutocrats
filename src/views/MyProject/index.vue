@@ -146,7 +146,6 @@ export default {
     async deleteProject(templateid) {
       try {
         await this.$store.dispatch('MyProject/deleteProject', templateid)
-        // this.$store.dispatch('MyProject/getByopenid');
         this.reload()
       } catch (error) {
         toast('请登录！')

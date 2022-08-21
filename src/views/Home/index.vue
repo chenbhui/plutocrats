@@ -92,12 +92,12 @@ export default {
     data() {
         return {};
     },
-    mounted() {
+    /* mounted() {
       window.onbeforeunload = function (e){
         let storage = window.localStorage
         storage.clear()
       }
-    },
+    }, */
   methods: {
         slideDown() {
             scrollTo({

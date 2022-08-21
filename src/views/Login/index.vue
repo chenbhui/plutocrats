@@ -56,7 +56,8 @@
                 <!-- 提示错误信息 -->
                 <div class="error" v-if="errors.first('password')">
                   <i class="iconfont icon-error">
-                    {{ errors.first("password") }}
+                    <!-- {{ errors.first("password") }} -->
+                    请填入6-20位密码
                   </i>
                 </div>
               </div>

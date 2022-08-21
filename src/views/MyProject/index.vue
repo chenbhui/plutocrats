@@ -10,9 +10,9 @@
           <div class="noticerPhoto">
             <div class="star-l"><img src="@/assets/images/star-l.png" alt="" /></div>
             <div class="imgs">
-              <div><img src="@/assets/images/author1.jpg" alt="" /></div>
-              <div><img src="@/assets/images/author.jpg" alt="" /></div>
-              <div><img src="@/assets/images/author2.jpg" alt="" /></div>
+              <div><img src="@/assets/images/author1.jpg" alt=""></div>
+              <div><img src="@/assets/images/author.jpg" alt=""></div>
+              <div><img src="@/assets/images/author2.jpg" alt=""></div>
             </div>
             <div class="star-r"><img src="@/assets/images/star-r.png" alt="" /></div>
           </div>
@@ -78,31 +78,28 @@
         </div>
         <!-- 项目列表 -->
         <ul class="projectList">
-          <li class="work" v-for="(item, index) in userProjectData" :key="item.templateid" @mouseover="mouseOver(index)" @mouseleave="mouseLeave">
-            <img v-if="show != index" :src="item.templateimg" alt="" />
-            <div v-else>
-              <p>{{ item.templatename }}</p>
-              <ul class="operate">
-                <li>
-                  <a @click="updateProject(item.templateid)" style="cursor: pointer">
-                    <span class="iconfont icon-bianji"></span>
-                    编辑
-                  </a>
-                </li>
-                <li>
-                  <a @click="sourceCode(item.templateid)" style="cursor: pointer">
-                    <span class="iconfont icon-baocun"></span>
-                    源码
-                  </a>
-                </li>
-                <li>
-                  <a @click="deleteProject(item.templateid)" style="cursor: pointer">
-                    <span class="iconfont icon-shanchu"></span>
-                    删除
-                  </a>
-                </li>
-              </ul>
-            </div>
+          <li class="work" v-for="item in userProjectData" :key="item.templateid">
+            <p>{{ item.templatename }}</p>
+            <ul class="operate">
+              <li>
+                <a @click="updateProject(item.templateid)" style="cursor: pointer">
+                  <span class="iconfont icon-bianji"></span>
+                  编辑
+                </a>
+              </li>
+              <li>
+                <a @click="sourceCode(item.templateid)" style="cursor: pointer">
+                  <span class="iconfont icon-baocun"></span>
+                  源码
+                </a>
+              </li>
+              <li>
+                <a @click="deleteProject(item.templateid)" style="cursor: pointer" >
+                  <span class="iconfont icon-shanchu"></span>
+                  删除
+                </a>
+              </li>
+            </ul>
           </li>
         </ul>
       </div>
@@ -117,24 +114,12 @@ import { mapState } from 'vuex'
 import toast from '@/utils/toast'
 import generateJsonFile from '@/utils/generateJsonFile'
 export default {
-  inject: ['reload'],
+  inject:['reload'],
   name: 'myProject',
-  data() {
-    return {
-      show: null,
-    }
-  },
   computed: {
-    ...mapState('MyProject', ['curprojectData', 'userProjectData']),
+    ...mapState('MyProject', ['curprojectData','userProjectData']),
   },
   methods: {
-    mouseOver(index) {
-      this.show = index
-      console.log(this.show)
-    },
-    mouseLeave() {
-      this.show = null
-    },
     // 编辑项目
     async updateProject(templateid) {
       try {
@@ -149,12 +134,13 @@ export default {
     async sourceCode(templateid) {
       console.log('sourceCode', templateid)
       try {
-        await this.$store.dispatch('MyProject/updateProject', templateid)
+        await this.$store.dispatch('MyProject/updateProject', templateid);
         // 生成json文件
-        generateJsonFile(JSON.parse(this.curprojectData.sourcecode))
+        generateJsonFile(JSON.parse(this.curprojectData.sourcecode));
       } catch (err) {
         console.log(err.message)
       }
+      
     },
     // 删除项目
     async deleteProject(templateid) {
@@ -167,18 +153,18 @@ export default {
     },
     //清除本地的CanvasData（上一次的编辑页面内容）
     clearLocalCanvasData() {
-      console.log('我们真棒')
-      localStorage.removeItem('canvasData')
-      localStorage.setItem('canvasStyle', JSON.stringify({ width: 1200, height: 740, scale: 100, background: '#fff' }))
-      this.$store.commit('MyProject/setCurprojectData', '')
-      this.$store.commit('EditPage/setComponentData')
-      this.$router.push('/editPage')
-    },
+      console.log("我们真棒");
+      localStorage.removeItem('canvasData');
+      localStorage.setItem('canvasStyle', JSON.stringify({ "width": 1200, "height": 740, "scale": 100, "background": "#fff" }));
+      this.$store.commit('MyProject/setCurprojectData', '');
+      this.$store.commit('EditPage/setComponentData');
+      this.$router.push('/editPage');
+    }
   },
   mounted() {
-    let userId = JSON.parse(localStorage.getItem('UserInfo')).openid
+    let userId = JSON.parse(localStorage.getItem('UserInfo')).openid;
     // 获取该用户的模板信息在首页显示
-    this.$store.dispatch('MyProject/getByopenid', userId)
+    this.$store.dispatch('MyProject/getByopenid', userId);
   },
 }
 </script>
@@ -411,6 +397,7 @@ export default {
 
       // 项目列表
       .projectList {
+
         // 项目
         .work {
           float: left;
@@ -420,11 +407,6 @@ export default {
           border-radius: 8px;
           border: 1px solid #ccc;
           background-color: #fff;
-          overflow: hidden;
-          img {
-            width: 100%;
-            height: 100%;
-          }
 
           p {
             height: 40px;

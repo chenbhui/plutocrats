@@ -33,6 +33,7 @@ const actions = {
             localStorage.setItem("UserInfo", JSON.stringify(result.data));
             //提交用户信息
             commit("GETUSERINFO", result.data);
+            localStorage.removeItem('nologin')
             return 'ok';
         } else {
             return Promise.reject(new Error(result.data));
@@ -44,9 +45,11 @@ const actions = {
         if (result.code == 200 && result.msg == "success") {
             //提交用户信息
             commit("GETUSERINFO", result.data);
+            
         } else {
             if (result.code == 500) {
                 console.log('未登录', result);
+                localStorage.setItem('nologin',false)
            }
             return Promise.reject(new Error(result.data));
         }

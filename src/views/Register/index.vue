@@ -39,7 +39,8 @@
                 <input type="password" autocomplete="off" v-model="password" name="password" v-validate="{ required: true, regex: /^[0-9a-zA-Z]{6,20}$/ }" :class="{ invalid: errors.has('password') }" />
                 <div class="error" v-show="errors.first('password')">
                   <i class="iconfont icon-error">
-                    {{ errors.first('password') }}
+                    <!-- {{ errors.first('password') }} -->
+                    请填入6-20位密码
                   </i>
                 </div>
               </div>

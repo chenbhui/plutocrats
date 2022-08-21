@@ -50,7 +50,7 @@
         <ul>
           <li v-for="(item,index) in formWorkList" :key="item.templateid">
             <a class="formImg" @click="clickTemplate(index,item.templateid)">
-              <img :src="item.templateimg" alt="" />
+              <img :src="item.templateimg" alt="" :title="item.templatename" />
             </a>
             <div class="information">
               <div class="left">
